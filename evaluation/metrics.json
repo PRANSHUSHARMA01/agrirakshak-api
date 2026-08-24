@@ -1,0 +1,80 @@
+{
+    "model": "best_agri_finetuned.keras",
+    "num_classes": 32,
+    "datasets_used": [
+        "Rice_and_Maize_Dataset",
+        "PlantDoc_Dataset"
+    ],
+    "total_test_images": 956,
+    "correct_predictions": 746,
+    "incorrect_predictions": 210,
+    "overall_accuracy_pct": 78.03,
+    "macro_f1": 0.5287,
+    "weighted_f1": 0.7689,
+    "macro_precision": 0.5787,
+    "macro_recall": 0.531,
+    "top3_accuracy_pct": 90.69,
+    "top5_accuracy_pct": 93.1,
+    "avg_confidence_overall": 0.8567,
+    "avg_confidence_correct": 0.9176,
+    "avg_confidence_incorrect": 0.6401,
+    "api_agreement_rate_pct": 100.0,
+    "class_imbalance": {
+        "largest_class": "07_White_stem_borer",
+        "largest_count": 52,
+        "smallest_class": "Tomato_Spider_mites_Two_spotted_spider_mite",
+        "smallest_count": 2
+    },
+    "weakest_5_classes": [
+        {
+            "class_index": 31,
+            "class_name": "Tomato_healthy",
+            "images": 8,
+            "correct": 0,
+            "accuracy": 0.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+        },
+        {
+            "class_index": 30,
+            "class_name": "Tomato__Tomato_mosaic_virus",
+            "images": 10,
+            "correct": 0,
+            "accuracy": 0.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+        },
+        {
+            "class_index": 22,
+            "class_name": "Tomato_Bacterial_spot",
+            "images": 9,
+            "correct": 0,
+            "accuracy": 0.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+        },
+        {
+            "class_index": 27,
+            "class_name": "Tomato_Spider_mites_Two_spotted_spider_mite",
+            "images": 2,
+            "correct": 0,
+            "accuracy": 0.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+        },
+        {
+            "class_index": 25,
+            "class_name": "Tomato_Leaf_Mold",
+            "images": 6,
+            "correct": 0,
+            "accuracy": 0.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+        }
+    ]
+}

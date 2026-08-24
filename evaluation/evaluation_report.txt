@@ -1,0 +1,96 @@
+==================================================
+AGRIRAKSHAK MODEL ACCURACY & PERFORMANCE EVALUATION REPORT
+==================================================
+MODEL: best_agri_finetuned.keras
+CLASSES: 32
+DATASETS USED: Rice_and_Maize_Dataset (802 images) + PlantDoc_Dataset (104 images)
+TEST IMAGES: 956
+CLASSES TESTED: 30 / 32
+ACCURACY: 78.03%
+MACRO F1: 0.5287
+WEIGHTED F1: 0.7689
+TOP-3 ACCURACY: 90.69%
+TOP-5 ACCURACY: 93.1%
+
+--------------------------------------------------
+1. CONFIDENCE ANALYSIS
+--------------------------------------------------
+Average Confidence (Overall): 85.67%
+Average Confidence (Correct): 91.76%
+Average Confidence (Incorrect): 64.01%
+
+--------------------------------------------------
+2. CLASS IMBALANCE ANALYSIS
+--------------------------------------------------
+Largest Class: 07_White_stem_borer (52 images)
+Smallest Class (with images): Tomato_Spider_mites_Two_spotted_spider_mite (2 images)
+Missing Classes (0 images in evaluation set):
+  - Potato___healthy
+  - Tomato__Target_Spot
+
+--------------------------------------------------
+3. FASTAPI ENDPOINT AGREEMENT
+--------------------------------------------------
+API Tested Samples: 15
+API-Direct Model Agreement: 100.0%
+
+--------------------------------------------------
+4. WEAKEST 5 CLASSES (BY F1 SCORE)
+--------------------------------------------------
+Class: Tomato_healthy
+  Images: 8 | Correct: 0 | Accuracy: 0.0%
+  Precision: 0.0 | Recall: 0.0 | F1: 0.0
+
+Class: Tomato__Tomato_mosaic_virus
+  Images: 10 | Correct: 0 | Accuracy: 0.0%
+  Precision: 0.0 | Recall: 0.0 | F1: 0.0
+
+Class: Tomato_Bacterial_spot
+  Images: 9 | Correct: 0 | Accuracy: 0.0%
+  Precision: 0.0 | Recall: 0.0 | F1: 0.0
+
+Class: Tomato_Spider_mites_Two_spotted_spider_mite
+  Images: 2 | Correct: 0 | Accuracy: 0.0%
+  Precision: 0.0 | Recall: 0.0 | F1: 0.0
+
+Class: Tomato_Leaf_Mold
+  Images: 6 | Correct: 0 | Accuracy: 0.0%
+  Precision: 0.0 | Recall: 0.0 | F1: 0.0
+
+--------------------------------------------------
+5. PER-CLASS METRICS TABLE
+--------------------------------------------------
+Class                                         | Images | Correct | Accuracy | Precision | Recall   | F1    
+----------------------------------------------------------------------------------------------------
+01_Bacterial_leaf_blight                      | 50     | 42      | 84.0   % | 0.8235    | 0.84     | 0.8317
+01_aphid                                      | 50     | 46      | 92.0   % | 0.9388    | 0.92     | 0.9293
+01_maydis_leaf_blight                         | 50     | 40      | 80.0   % | 0.8163    | 0.8      | 0.8081
+02_Brown_spot                                 | 50     | 41      | 82.0   % | 0.82      | 0.82     | 0.82  
+02_fall_armyworm                              | 50     | 49      | 98.0   % | 0.8909    | 0.98     | 0.9333
+02_turcicum_leaf_blight                       | 50     | 38      | 76.0   % | 0.7755    | 0.76     | 0.7677
+03_FAW_symptoms                               | 50     | 29      | 58.0   % | 0.9355    | 0.58     | 0.716 
+03_False_smut                                 | 50     | 48      | 96.0   % | 0.8727    | 0.96     | 0.9143
+03_curvularia_leaf_spot                       | 50     | 40      | 80.0   % | 0.8696    | 0.8      | 0.8333
+04_leaf_sheath_blight                         | 50     | 44      | 88.0   % | 0.7458    | 0.88     | 0.8073
+04_sorghum_downy_mildew                       | 50     | 43      | 86.0   % | 0.9149    | 0.86     | 0.8866
+05_Leaf_folder                                | 50     | 41      | 82.0   % | 0.7885    | 0.82     | 0.8039
+06_Rice_skipper                               | 50     | 44      | 88.0   % | 0.898     | 0.88     | 0.8889
+07_White_stem_borer                           | 52     | 48      | 92.31  % | 0.8276    | 0.9231   | 0.8727
+08_Yellow_stem_borer                          | 50     | 42      | 84.0   % | 1.0       | 0.84     | 0.913 
+Maize_Healthy                                 | 50     | 50      | 100.0  % | 0.5208    | 1.0      | 0.6849
+Pepper__bell___Bacterial_spot                 | 9      | 3       | 33.33  % | 0.25      | 0.3333   | 0.2857
+Pepper__bell___healthy                        | 8      | 2       | 25.0   % | 1.0       | 0.25     | 0.4   
+Potato___Early_blight                         | 8      | 2       | 25.0   % | 0.2857    | 0.25     | 0.2667
+Potato___Late_blight                          | 8      | 1       | 12.5   % | 0.2       | 0.125    | 0.1538
+Potato___healthy                              | 0      | 0       | 0.0    % | 0.0       | 0.0      | 0.0   
+Rice_Healthy                                  | 50     | 44      | 88.0   % | 0.9167    | 0.88     | 0.898 
+Tomato_Bacterial_spot                         | 9      | 0       | 0.0    % | 0.0       | 0.0      | 0.0   
+Tomato_Early_blight                           | 9      | 1       | 11.11  % | 0.25      | 0.1111   | 0.1538
+Tomato_Late_blight                            | 10     | 5       | 50.0   % | 0.2       | 0.5      | 0.2857
+Tomato_Leaf_Mold                              | 6      | 0       | 0.0    % | 0.0       | 0.0      | 0.0   
+Tomato_Septoria_leaf_spot                     | 11     | 2       | 18.18  % | 0.4       | 0.1818   | 0.25  
+Tomato_Spider_mites_Two_spotted_spider_mite   | 2      | 0       | 0.0    % | 0.0       | 0.0      | 0.0   
+Tomato__Target_Spot                           | 0      | 0       | 0.0    % | 0.0       | 0.0      | 0.0   
+Tomato__Tomato_YellowLeaf__Curl_Virus         | 6      | 1       | 16.67  % | 1.0       | 0.1667   | 0.2857
+Tomato__Tomato_mosaic_virus                   | 10     | 0       | 0.0    % | 0.0       | 0.0      | 0.0   
+Tomato_healthy                                | 8      | 0       | 0.0    % | 0.0       | 0.0      | 0.0   

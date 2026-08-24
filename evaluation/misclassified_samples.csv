@@ -1,0 +1,211 @@
+sample_index,path,actual_class,predicted_class,confidence,dataset
+3,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Maize\Disease\01_maydis_leaf_blight\01ccbf6c-ad41-496f-b487-fe0d28c5b56f.Jpg,01_maydis_leaf_blight,03_curvularia_leaf_spot,0.8479,Rice_and_Maize_Dataset
+13,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Maize\Disease\01_maydis_leaf_blight\0f3807b9-ad10-4f3d-abd0-5807ad34f21b.Jpg,01_maydis_leaf_blight,03_curvularia_leaf_spot,0.7949,Rice_and_Maize_Dataset
+15,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Maize\Disease\01_maydis_leaf_blight\0f5cb919-a0ce-476e-a1ed-9b4398300672.Jpg,01_maydis_leaf_blight,01_aphid,0.4667,Rice_and_Maize_Dataset
+21,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Maize\Disease\01_maydis_leaf_blight\0f91343c-b621-46cf-8b45-8892a3470cd1.Jpg,01_maydis_leaf_blight,02_turcicum_leaf_blight,0.9982,Rice_and_Maize_Dataset
+25,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Maize\Disease\01_maydis_leaf_blight\0fe00830-a4f1-4bb5-b804-4417c9008a22.Jpg,01_maydis_leaf_blight,Maize_Healthy,0.4486,Rice_and_Maize_Dataset
+34,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Maize\Disease\01_maydis_leaf_blight\1a6d4676-3daf-4aaa-96e4-f0b79aa1b1c9.Jpg,01_maydis_leaf_blight,02_turcicum_leaf_blight,0.7689,Rice_and_Maize_Dataset
+37,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Maize\Disease\01_maydis_leaf_blight\1a81106b-83b9-4743-b13f-52d27d27a7aa.Jpg,01_maydis_leaf_blight,02_turcicum_leaf_blight,0.6158,Rice_and_Maize_Dataset
+40,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Maize\Disease\01_maydis_leaf_blight\1abd700a-932d-4d43-ae90-385c2a9b663e.Jpg,01_maydis_leaf_blight,Maize_Healthy,0.9752,Rice_and_Maize_Dataset
+45,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Maize\Disease\01_maydis_leaf_blight\1b3d5043-fd52-441c-a3a9-57854442d452.Jpg,01_maydis_leaf_blight,Maize_Healthy,0.97,Rice_and_Maize_Dataset
+49,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Maize\Disease\01_maydis_leaf_blight\1b8efd49-9702-47f7-b7e8-3f3857a0a45d.Jpg,01_maydis_leaf_blight,Maize_Healthy,0.7706,Rice_and_Maize_Dataset
+50,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Maize\Disease\02_turcicum_leaf_blight\03a0eecf-439e-4229-856d-85611b9c31e2.Jpg,02_turcicum_leaf_blight,03_curvularia_leaf_spot,0.4977,Rice_and_Maize_Dataset
+51,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Maize\Disease\02_turcicum_leaf_blight\03aa0988-772c-4f3b-8e12-9ae72059ebe7.Jpg,02_turcicum_leaf_blight,01_maydis_leaf_blight,0.3705,Rice_and_Maize_Dataset
+55,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Maize\Disease\02_turcicum_leaf_blight\2dac7784-ec5a-476a-93ff-1e08dd05e714.Jpg,02_turcicum_leaf_blight,Maize_Healthy,0.4774,Rice_and_Maize_Dataset
+57,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Maize\Disease\02_turcicum_leaf_blight\2dc081f7-3ebd-4f63-9fcb-1e50d103bda9.Jpg,02_turcicum_leaf_blight,Maize_Healthy,0.6016,Rice_and_Maize_Dataset
+67,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Maize\Disease\02_turcicum_leaf_blight\2f14951b-d624-4522-bed6-3fd255d642e8.Jpg,02_turcicum_leaf_blight,Maize_Healthy,0.8961,Rice_and_Maize_Dataset
+73,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Maize\Disease\02_turcicum_leaf_blight\2fb20f7a-d7b9-4d89-856f-772d2c8e8e26.Jpg,02_turcicum_leaf_blight,Maize_Healthy,0.8796,Rice_and_Maize_Dataset
+75,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Maize\Disease\02_turcicum_leaf_blight\2fdbcea2-dd17-4827-bf4c-9ffbc2f13472.Jpg,02_turcicum_leaf_blight,Maize_Healthy,0.6384,Rice_and_Maize_Dataset
+80,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Maize\Disease\02_turcicum_leaf_blight\2fff4e2a-3032-4cde-b6b5-b57343d6db85.Jpg,02_turcicum_leaf_blight,01_maydis_leaf_blight,0.7321,Rice_and_Maize_Dataset
+83,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Maize\Disease\02_turcicum_leaf_blight\3a40f9f9-2a00-4974-b008-fc8e4de8b5ad.Jpg,02_turcicum_leaf_blight,Maize_Healthy,0.9808,Rice_and_Maize_Dataset
+84,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Maize\Disease\02_turcicum_leaf_blight\3a414ce9-19c9-4013-b069-636ee6b0d3e5.Jpg,02_turcicum_leaf_blight,04_sorghum_downy_mildew,0.6997,Rice_and_Maize_Dataset
+89,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Maize\Disease\02_turcicum_leaf_blight\3b2b6d8b-8f33-49ee-aceb-c994c7d4742c.Jpg,02_turcicum_leaf_blight,Maize_Healthy,0.4548,Rice_and_Maize_Dataset
+98,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Maize\Disease\02_turcicum_leaf_blight\3b7afc38-e97d-4c9b-a179-7cce446e2377.Jpg,02_turcicum_leaf_blight,01_maydis_leaf_blight,0.5286,Rice_and_Maize_Dataset
+101,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Maize\Disease\03_curvularia_leaf_spot\04e42f20-b1f0-41e9-b092-dcb3123b1294.Jpg,03_curvularia_leaf_spot,01_maydis_leaf_blight,0.5843,Rice_and_Maize_Dataset
+102,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Maize\Disease\03_curvularia_leaf_spot\2dc0bee9-6514-4364-95d7-3a2f10285edf.Jpg,03_curvularia_leaf_spot,02_fall_armyworm,0.4789,Rice_and_Maize_Dataset
+125,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Maize\Disease\03_curvularia_leaf_spot\3c56c005-be50-4917-b358-57a68aa88b8e.Jpg,03_curvularia_leaf_spot,01_maydis_leaf_blight,0.3188,Rice_and_Maize_Dataset
+128,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Maize\Disease\03_curvularia_leaf_spot\3da18287-1464-4fee-9944-5b6cb3042e5d.Jpg,03_curvularia_leaf_spot,Maize_Healthy,0.9144,Rice_and_Maize_Dataset
+131,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Maize\Disease\03_curvularia_leaf_spot\3ea64ad1-e0eb-47c0-9dc9-4e49c15bb154.Jpg,03_curvularia_leaf_spot,02_turcicum_leaf_blight,0.506,Rice_and_Maize_Dataset
+132,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Maize\Disease\03_curvularia_leaf_spot\3ed94021-3b25-4d91-b85d-57a970ffd4d4.Jpg,03_curvularia_leaf_spot,Maize_Healthy,0.6165,Rice_and_Maize_Dataset
+135,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Maize\Disease\03_curvularia_leaf_spot\3fa07a88-a0b4-4582-8125-41a07bf7a550.Jpg,03_curvularia_leaf_spot,02_turcicum_leaf_blight,0.4423,Rice_and_Maize_Dataset
+136,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Maize\Disease\03_curvularia_leaf_spot\3faf61d9-5117-42ce-99d3-da1be6ed0827.Jpg,03_curvularia_leaf_spot,04_sorghum_downy_mildew,0.5986,Rice_and_Maize_Dataset
+146,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Maize\Disease\03_curvularia_leaf_spot\4bab2279-de01-4115-b78f-cc7ea97a43f3.Jpg,03_curvularia_leaf_spot,02_Brown_spot,0.2071,Rice_and_Maize_Dataset
+147,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Maize\Disease\03_curvularia_leaf_spot\4bcd59ee-8154-48ed-a932-a1e6ec5713e2.Jpg,03_curvularia_leaf_spot,02_turcicum_leaf_blight,0.7566,Rice_and_Maize_Dataset
+169,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Maize\Disease\04_sorghum_downy_mildew\33fc9328-d6dc-4ffd-81f8-3eac3f76779e.Jpg,04_sorghum_downy_mildew,Maize_Healthy,0.9488,Rice_and_Maize_Dataset
+180,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Maize\Disease\04_sorghum_downy_mildew\8e0646bd-b1e7-452f-b149-4aa93d150c0a.Jpg,04_sorghum_downy_mildew,Maize_Healthy,0.5331,Rice_and_Maize_Dataset
+181,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Maize\Disease\04_sorghum_downy_mildew\8e8129f9-965c-4294-bb51-645e1688de06.Jpg,04_sorghum_downy_mildew,Maize_Healthy,0.9529,Rice_and_Maize_Dataset
+185,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Maize\Disease\04_sorghum_downy_mildew\8fa1f436-8a50-497b-825a-ec78e24f4287.Jpg,04_sorghum_downy_mildew,03_FAW_symptoms,0.4484,Rice_and_Maize_Dataset
+189,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Maize\Disease\04_sorghum_downy_mildew\9c7a27a4-2d79-457f-8c7d-488479ffc8bf.Jpg,04_sorghum_downy_mildew,Maize_Healthy,0.9927,Rice_and_Maize_Dataset
+195,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Maize\Disease\04_sorghum_downy_mildew\9f1efd67-8ca3-482f-afd8-6f40b3cc2e76.Jpg,04_sorghum_downy_mildew,Maize_Healthy,0.961,Rice_and_Maize_Dataset
+196,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Maize\Disease\04_sorghum_downy_mildew\9f56dcb4-9120-482c-ab35-3df43be50c61.Jpg,04_sorghum_downy_mildew,03_False_smut,0.2856,Rice_and_Maize_Dataset
+251,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Maize\Insect-pests\01_aphid\Maize_Aphid 190.jpg,01_aphid,05_Leaf_folder,0.5883,Rice_and_Maize_Dataset
+281,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Maize\Insect-pests\01_aphid\Maize_Aphid 220.jpg,01_aphid,02_fall_armyworm,0.9945,Rice_and_Maize_Dataset
+284,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Maize\Insect-pests\01_aphid\Maize_Aphid 223.jpg,01_aphid,03_curvularia_leaf_spot,0.8649,Rice_and_Maize_Dataset
+289,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Maize\Insect-pests\01_aphid\Maize_Aphid 228.jpg,01_aphid,05_Leaf_folder,0.5184,Rice_and_Maize_Dataset
+338,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Maize\Insect-pests\02_fall_armyworm\Fall_Army_Worm185.jpg,02_fall_armyworm,06_Rice_skipper,0.864,Rice_and_Maize_Dataset
+351,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Maize\Insect-pests\03_FAW_symptoms\FAW_Symptom400.jpg,03_FAW_symptoms,Maize_Healthy,0.9993,Rice_and_Maize_Dataset
+352,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Maize\Insect-pests\03_FAW_symptoms\FAW_Symptom401.jpg,03_FAW_symptoms,Maize_Healthy,0.4208,Rice_and_Maize_Dataset
+359,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Maize\Insect-pests\03_FAW_symptoms\FAW_Symptom408.jpg,03_FAW_symptoms,Maize_Healthy,0.9299,Rice_and_Maize_Dataset
+360,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Maize\Insect-pests\03_FAW_symptoms\FAW_Symptom409.jpg,03_FAW_symptoms,Maize_Healthy,0.5029,Rice_and_Maize_Dataset
+366,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Maize\Insect-pests\03_FAW_symptoms\FAW_Symptom415.jpg,03_FAW_symptoms,Maize_Healthy,0.7064,Rice_and_Maize_Dataset
+370,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Maize\Insect-pests\03_FAW_symptoms\FAW_Symptom419.jpg,03_FAW_symptoms,Maize_Healthy,0.8033,Rice_and_Maize_Dataset
+375,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Maize\Insect-pests\03_FAW_symptoms\FAW_Symptom424.jpg,03_FAW_symptoms,04_sorghum_downy_mildew,0.3483,Rice_and_Maize_Dataset
+376,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Maize\Insect-pests\03_FAW_symptoms\FAW_Symptom425.jpg,03_FAW_symptoms,02_fall_armyworm,0.9015,Rice_and_Maize_Dataset
+377,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Maize\Insect-pests\03_FAW_symptoms\FAW_Symptom426.jpg,03_FAW_symptoms,Maize_Healthy,0.9704,Rice_and_Maize_Dataset
+378,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Maize\Insect-pests\03_FAW_symptoms\FAW_Symptom427.jpg,03_FAW_symptoms,Maize_Healthy,0.6156,Rice_and_Maize_Dataset
+379,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Maize\Insect-pests\03_FAW_symptoms\FAW_Symptom428.jpg,03_FAW_symptoms,Maize_Healthy,0.5803,Rice_and_Maize_Dataset
+384,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Maize\Insect-pests\03_FAW_symptoms\FAW_Symptom433.jpg,03_FAW_symptoms,Maize_Healthy,0.8715,Rice_and_Maize_Dataset
+385,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Maize\Insect-pests\03_FAW_symptoms\FAW_Symptom434.jpg,03_FAW_symptoms,04_sorghum_downy_mildew,0.6257,Rice_and_Maize_Dataset
+387,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Maize\Insect-pests\03_FAW_symptoms\FAW_Symptom436.jpg,03_FAW_symptoms,Maize_Healthy,0.903,Rice_and_Maize_Dataset
+388,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Maize\Insect-pests\03_FAW_symptoms\FAW_Symptom437.jpg,03_FAW_symptoms,Maize_Healthy,0.9752,Rice_and_Maize_Dataset
+389,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Maize\Insect-pests\03_FAW_symptoms\FAW_Symptom438.jpg,03_FAW_symptoms,Maize_Healthy,0.8792,Rice_and_Maize_Dataset
+390,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Maize\Insect-pests\03_FAW_symptoms\FAW_Symptom439.jpg,03_FAW_symptoms,Maize_Healthy,0.9302,Rice_and_Maize_Dataset
+391,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Maize\Insect-pests\03_FAW_symptoms\FAW_Symptom440.jpg,03_FAW_symptoms,Maize_Healthy,0.8577,Rice_and_Maize_Dataset
+392,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Maize\Insect-pests\03_FAW_symptoms\FAW_Symptom441.jpg,03_FAW_symptoms,Maize_Healthy,0.7158,Rice_and_Maize_Dataset
+396,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Maize\Insect-pests\03_FAW_symptoms\FAW_Symptom445.jpg,03_FAW_symptoms,Maize_Healthy,0.6818,Rice_and_Maize_Dataset
+398,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Maize\Insect-pests\03_FAW_symptoms\FAW_Symptom447.jpg,03_FAW_symptoms,01_Bacterial_leaf_blight,0.4533,Rice_and_Maize_Dataset
+402,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Rice\Disease\01_Bacterial_leaf_blight\01_Bacterial_leaf_blight_069.jpg,01_Bacterial_leaf_blight,05_Leaf_folder,0.8749,Rice_and_Maize_Dataset
+409,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Rice\Disease\01_Bacterial_leaf_blight\01_Bacterial_leaf_blight_186.jpg,01_Bacterial_leaf_blight,04_leaf_sheath_blight,0.8935,Rice_and_Maize_Dataset
+413,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Rice\Disease\01_Bacterial_leaf_blight\7bdd83e6-29d7-4fc1-af4c-f4f0e406bbff.Jpg,01_Bacterial_leaf_blight,02_Brown_spot,0.8524,Rice_and_Maize_Dataset
+415,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Rice\Disease\01_Bacterial_leaf_blight\7c3adcf1-d82f-4984-b67b-fbfee5d9f589.Jpg,01_Bacterial_leaf_blight,04_leaf_sheath_blight,0.835,Rice_and_Maize_Dataset
+420,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Rice\Disease\01_Bacterial_leaf_blight\7d67f079-1c55-4e82-9989-b214e1823339.Jpg,01_Bacterial_leaf_blight,Rice_Healthy,0.8603,Rice_and_Maize_Dataset
+421,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Rice\Disease\01_Bacterial_leaf_blight\7d724a9a-b0e8-47fd-a4a1-2cd2e30a0172.Jpg,01_Bacterial_leaf_blight,04_leaf_sheath_blight,0.6353,Rice_and_Maize_Dataset
+430,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Rice\Disease\01_Bacterial_leaf_blight\8a5a4935-7b1a-4e32-975f-e8908cbfc15c.Jpg,01_Bacterial_leaf_blight,03_False_smut,0.4818,Rice_and_Maize_Dataset
+434,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Rice\Disease\01_Bacterial_leaf_blight\8aaa24a2-d3d6-43dd-94d0-9d4b850611df.Jpg,01_Bacterial_leaf_blight,04_leaf_sheath_blight,0.6175,Rice_and_Maize_Dataset
+462,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Rice\Disease\02_Brown_spot\3b040119-80de-4df7-89dd-853fab04c1c8.Jpg,02_Brown_spot,03_False_smut,0.5237,Rice_and_Maize_Dataset
+463,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Rice\Disease\02_Brown_spot\3b426548-2b0f-4b6f-801d-d5500d942b43.Jpg,02_Brown_spot,04_leaf_sheath_blight,0.5082,Rice_and_Maize_Dataset
+470,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Rice\Disease\02_Brown_spot\3c4dc9e9-51db-4c94-8bb8-60259baf8b78.Jpg,02_Brown_spot,04_leaf_sheath_blight,0.9271,Rice_and_Maize_Dataset
+473,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Rice\Disease\02_Brown_spot\3c73de7b-649d-4d93-9da4-616f76203487.Jpg,02_Brown_spot,07_White_stem_borer,0.7547,Rice_and_Maize_Dataset
+479,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Rice\Disease\02_Brown_spot\3ce4a258-816e-416e-9a4a-58088f8e2061.Jpg,02_Brown_spot,Rice_Healthy,0.3436,Rice_and_Maize_Dataset
+482,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Rice\Disease\02_Brown_spot\3cf59501-48bb-4499-8f73-9162c1e4d084.Jpg,02_Brown_spot,04_leaf_sheath_blight,0.9806,Rice_and_Maize_Dataset
+495,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Rice\Disease\02_Brown_spot\3e6c3902-fe0d-4a5a-995c-ad79c8121767.Jpg,02_Brown_spot,06_Rice_skipper,0.9874,Rice_and_Maize_Dataset
+496,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Rice\Disease\02_Brown_spot\3e840b3c-bb87-4409-907c-ae5dba6ea4a8.Jpg,02_Brown_spot,05_Leaf_folder,0.4367,Rice_and_Maize_Dataset
+497,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Rice\Disease\02_Brown_spot\3e9032f6-b77f-4e9c-a9a3-32a8d8797083.Jpg,02_Brown_spot,04_leaf_sheath_blight,0.7086,Rice_and_Maize_Dataset
+518,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Rice\Disease\03_False_smut\1f2dcdc8-91da-42d8-a44e-eaff7202c8f6.Jpg,03_False_smut,02_Brown_spot,0.5096,Rice_and_Maize_Dataset
+522,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Rice\Disease\03_False_smut\2a8a4d5e-de12-4a07-bbae-5a94753b74a0.Jpg,03_False_smut,04_leaf_sheath_blight,0.7212,Rice_and_Maize_Dataset
+552,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Rice\Disease\04_leaf_sheath_blight\05_leaf_sheath_blight_004.jpg,04_leaf_sheath_blight,07_White_stem_borer,0.4881,Rice_and_Maize_Dataset
+574,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Rice\Disease\04_leaf_sheath_blight\21bd33d6-90dc-441a-85b6-af7d606ca5dd.Jpg,04_leaf_sheath_blight,01_Bacterial_leaf_blight,0.467,Rice_and_Maize_Dataset
+579,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Rice\Disease\04_leaf_sheath_blight\23c553a6-7223-4bd2-b956-54f6670df3d9.Jpg,04_leaf_sheath_blight,03_False_smut,0.5948,Rice_and_Maize_Dataset
+586,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Rice\Disease\04_leaf_sheath_blight\9d7353c6-45e8-44f9-a211-a545ea02b73f.Jpg,04_leaf_sheath_blight,02_Brown_spot,0.364,Rice_and_Maize_Dataset
+587,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Rice\Disease\04_leaf_sheath_blight\9dc18330-2dca-4ea2-8c84-568126882bce.Jpg,04_leaf_sheath_blight,01_Bacterial_leaf_blight,0.4331,Rice_and_Maize_Dataset
+591,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Rice\Disease\04_leaf_sheath_blight\9e38c20a-465e-4898-b07f-8490358d86d8.Jpg,04_leaf_sheath_blight,01_Bacterial_leaf_blight,0.6762,Rice_and_Maize_Dataset
+601,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Rice\Healthy\00c4e78d-21fb-425c-bdac-71b9bf00f010.Jpg,Rice_Healthy,01_Bacterial_leaf_blight,0.8756,Rice_and_Maize_Dataset
+607,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Rice\Healthy\0ac88bf1-e050-4f5f-bddf-8ece9e3fcfab.Jpg,Rice_Healthy,01_Bacterial_leaf_blight,0.5774,Rice_and_Maize_Dataset
+609,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Rice\Healthy\0b2b0e79-1d5b-41b1-92b5-6a7f6b680164.Jpg,Rice_Healthy,01_Bacterial_leaf_blight,0.6272,Rice_and_Maize_Dataset
+625,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Rice\Healthy\1c0d72ee-ce7e-4066-a163-1c2dcebc86df.Jpg,Rice_Healthy,02_Brown_spot,0.3746,Rice_and_Maize_Dataset
+631,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Rice\Healthy\1d1fdc49-6bea-4722-a22a-2be9b2e2be31.Jpg,Rice_Healthy,05_Leaf_folder,0.5002,Rice_and_Maize_Dataset
+640,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Rice\Healthy\1fd28e2d-3798-426e-a7c1-55786b3d48aa.Jpg,Rice_Healthy,04_leaf_sheath_blight,0.3879,Rice_and_Maize_Dataset
+659,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Rice\Insect-pests\05_Leaf_folder\09_Leaf_folder_insect_045.jpg,05_Leaf_folder,04_leaf_sheath_blight,0.5369,Rice_and_Maize_Dataset
+666,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Rice\Insect-pests\05_Leaf_folder\3e4d70db-95cf-4558-903a-0dcaa4b0f8f5.Jpg,05_Leaf_folder,06_Rice_skipper,0.9993,Rice_and_Maize_Dataset
+667,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Rice\Insect-pests\05_Leaf_folder\3e54e6c5-3e27-4d0c-8140-6e1e9b4d501c.Jpg,05_Leaf_folder,06_Rice_skipper,0.9974,Rice_and_Maize_Dataset
+672,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Rice\Insect-pests\05_Leaf_folder\3ec617ef-c9ad-4d91-8155-87c1564fc570.Jpg,05_Leaf_folder,02_Brown_spot,0.8848,Rice_and_Maize_Dataset
+675,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Rice\Insect-pests\05_Leaf_folder\3f4c939c-a105-485d-b0f4-5e7d77170c63.Jpg,05_Leaf_folder,04_leaf_sheath_blight,0.7502,Rice_and_Maize_Dataset
+678,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Rice\Insect-pests\05_Leaf_folder\3fcaa80a-529d-44b5-a540-a1937ad38eac.Jpg,05_Leaf_folder,03_False_smut,0.7818,Rice_and_Maize_Dataset
+682,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Rice\Insect-pests\05_Leaf_folder\3fe4cbb3-d97e-4105-abd8-7be0aa4d3922.Jpg,05_Leaf_folder,01_Bacterial_leaf_blight,0.5207,Rice_and_Maize_Dataset
+685,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Rice\Insect-pests\05_Leaf_folder\4a099c9e-ddcb-4ea2-ae18-0a5ab5773ca3.Jpg,05_Leaf_folder,01_Bacterial_leaf_blight,0.4908,Rice_and_Maize_Dataset
+695,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Rice\Insect-pests\05_Leaf_folder\4b824bb3-b54d-4f0d-b2df-425b3be32a9e.Jpg,05_Leaf_folder,04_leaf_sheath_blight,0.801,Rice_and_Maize_Dataset
+713,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Rice\Insect-pests\06_Rice_skipper\13_Rice_skipper_larvae_061.jpg,06_Rice_skipper,05_Leaf_folder,0.8933,Rice_and_Maize_Dataset
+715,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Rice\Insect-pests\06_Rice_skipper\7acd6007-574c-41c4-a3d3-4489cea69102.Jpg,06_Rice_skipper,05_Leaf_folder,0.5022,Rice_and_Maize_Dataset
+722,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Rice\Insect-pests\06_Rice_skipper\7cc95bf0-c89c-4c9c-89f6-2c2025076305.Jpg,06_Rice_skipper,07_White_stem_borer,0.9991,Rice_and_Maize_Dataset
+729,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Rice\Insect-pests\06_Rice_skipper\7e961052-0751-42b9-ac8c-e1d1a318fd92.Jpg,06_Rice_skipper,05_Leaf_folder,0.6555,Rice_and_Maize_Dataset
+740,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Rice\Insect-pests\06_Rice_skipper\8b56807f-9a81-408a-b61e-901e020b44ce.Jpg,06_Rice_skipper,07_White_stem_borer,0.9991,Rice_and_Maize_Dataset
+743,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Rice\Insect-pests\06_Rice_skipper\8bafb171-e270-4aa4-b2e7-7425cbbf4850.Jpg,06_Rice_skipper,07_White_stem_borer,0.9818,Rice_and_Maize_Dataset
+770,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Rice\Insect-pests\07_White_stem_borer\3d6d22db-7812-406b-a2b7-f58ca8ea0744.Jpg,07_White_stem_borer,04_leaf_sheath_blight,0.9865,Rice_and_Maize_Dataset
+781,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Rice\Insect-pests\07_White_stem_borer\6ec4af09-78d6-4d04-82a6-7c1287744acc.Jpg,07_White_stem_borer,03_False_smut,0.893,Rice_and_Maize_Dataset
+798,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Rice\Insect-pests\07_White_stem_borer\9d2c0dff-6735-49be-b029-63c207bc7711.Jpg,07_White_stem_borer,02_fall_armyworm,0.9972,Rice_and_Maize_Dataset
+799,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Rice\Insect-pests\07_White_stem_borer\9d7c71d8-fc55-4dc9-97bd-3b4e1c7bf92a.Jpg,07_White_stem_borer,02_Brown_spot,0.3623,Rice_and_Maize_Dataset
+803,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Rice\Insect-pests\08_Yellow_stem_borer\08d12718-fc59-4d78-a4c4-b2c6e6ec93c0.Jpg,08_Yellow_stem_borer,03_False_smut,0.4365,Rice_and_Maize_Dataset
+808,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Rice\Insect-pests\08_Yellow_stem_borer\15_Yellow_stem_borer_008.jpg,08_Yellow_stem_borer,07_White_stem_borer,0.5287,Rice_and_Maize_Dataset
+828,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Rice\Insect-pests\08_Yellow_stem_borer\8ad3247a-65e1-4f31-a48f-c627df75e547.Jpg,08_Yellow_stem_borer,05_Leaf_folder,0.5443,Rice_and_Maize_Dataset
+830,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Rice\Insect-pests\08_Yellow_stem_borer\8b4be98c-c0a1-4d5c-adff-91aa1e469d3a.Jpg,08_Yellow_stem_borer,07_White_stem_borer,0.6693,Rice_and_Maize_Dataset
+834,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Rice\Insect-pests\08_Yellow_stem_borer\8bffed73-c517-4fe0-9d80-51f156493860.Jpg,08_Yellow_stem_borer,05_Leaf_folder,0.3968,Rice_and_Maize_Dataset
+837,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Rice\Insect-pests\08_Yellow_stem_borer\8d8c7bde-7fc7-42e9-96b6-54a9d0455d2e.Jpg,08_Yellow_stem_borer,Rice_Healthy,0.3535,Rice_and_Maize_Dataset
+840,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Rice\Insect-pests\08_Yellow_stem_borer\9a615980-f729-471c-afa8-cb7ac80fb481.Jpg,08_Yellow_stem_borer,Rice_Healthy,0.3161,Rice_and_Maize_Dataset
+850,C:\Users\prans\Downloads\Rice_and_Maize_Dataset\Rice\Insect-pests\08_Yellow_stem_borer\9e4c1b03-901a-48e1-be23-4fbd8384d892.Jpg,08_Yellow_stem_borer,06_Rice_skipper,0.5764,Rice_and_Maize_Dataset
+853,zip://PlantDoc-Dataset-master/test/Bell_pepper leaf spot/000.jpg,Pepper__bell___Bacterial_spot,Tomato_Leaf_Mold,0.2739,PlantDoc_Dataset
+854,zip://PlantDoc-Dataset-master/test/Bell_pepper leaf spot/01.jpg,Pepper__bell___Bacterial_spot,02_Brown_spot,0.4999,PlantDoc_Dataset
+855,zip://PlantDoc-Dataset-master/test/Bell_pepper leaf spot/Bacterial-spot-pepper2.jpg,Pepper__bell___Bacterial_spot,Potato___Early_blight,0.7628,PlantDoc_Dataset
+856,zip://PlantDoc-Dataset-master/test/Bell_pepper leaf spot/CMVpepperLeafShock-copy-50QUALITY-1ge8umw.jpg,Pepper__bell___Bacterial_spot,Maize_Healthy,0.5501,PlantDoc_Dataset
+857,zip://PlantDoc-Dataset-master/test/Bell_pepper leaf spot/H5w92.jpg,Pepper__bell___Bacterial_spot,02_turcicum_leaf_blight,0.4097,PlantDoc_Dataset
+860,zip://PlantDoc-Dataset-master/test/Bell_pepper leaf spot/pepper_bacterial-spot_03_zoom.jpg,Pepper__bell___Bacterial_spot,Tomato_Leaf_Mold,0.5162,PlantDoc_Dataset
+862,zip://PlantDoc-Dataset-master/test/Bell_pepper leaf/4825902504_5fa80b65b8_z.jpg,Pepper__bell___healthy,Tomato_Late_blight,0.9711,PlantDoc_Dataset
+863,zip://PlantDoc-Dataset-master/test/Bell_pepper leaf/GREEN%20BELL%20PLANT%20YELLOW%20LEAF.JPG.jpg,Pepper__bell___healthy,Tomato_Leaf_Mold,0.9433,PlantDoc_Dataset
+864,zip://PlantDoc-Dataset-master/test/Bell_pepper leaf/IMG_1629.JPG?1507122477.jpg,Pepper__bell___healthy,Pepper__bell___Bacterial_spot,0.9303,PlantDoc_Dataset
+865,zip://PlantDoc-Dataset-master/test/Bell_pepper leaf/RnGnC.jpg,Pepper__bell___healthy,Maize_Healthy,0.6251,PlantDoc_Dataset
+866,zip://PlantDoc-Dataset-master/test/Bell_pepper leaf/e33155.jpg,Pepper__bell___healthy,02_turcicum_leaf_blight,0.3914,PlantDoc_Dataset
+868,zip://PlantDoc-Dataset-master/test/Bell_pepper leaf/why-are-my-pepper-plants-yellow-yellow-pepper-plants-yellow-leaves-green-veins-pepper-plants-yellow-veins.jpg,Pepper__bell___healthy,Pepper__bell___Bacterial_spot,0.5235,PlantDoc_Dataset
+869,zip://PlantDoc-Dataset-master/test/Potato leaf early blight/3023.jpg,Potato___Early_blight,03_curvularia_leaf_spot,0.5,PlantDoc_Dataset
+870,zip://PlantDoc-Dataset-master/test/Potato leaf early blight/backus-056-potato-blight.jpg,Potato___Early_blight,Potato___Late_blight,0.8135,PlantDoc_Dataset
+872,zip://PlantDoc-Dataset-master/test/Potato leaf early blight/early-blight-or-target-spot-alternaria-solani-lesions-on-a-tomato-AXK6AY.jpg,Potato___Early_blight,Tomato_Late_blight,0.9966,PlantDoc_Dataset
+873,zip://PlantDoc-Dataset-master/test/Potato leaf early blight/earlyblightpotato.jpg,Potato___Early_blight,Potato___Late_blight,0.7807,PlantDoc_Dataset
+874,zip://PlantDoc-Dataset-master/test/Potato leaf early blight/potato-blight-phytophthora-infestans-close-up-of-upper-surface-of-BMMRXC.jpg,Potato___Early_blight,Potato___Late_blight,0.9295,PlantDoc_Dataset
+876,zip://PlantDoc-Dataset-master/test/Potato leaf early blight/potatobd001.jpg,Potato___Early_blight,Pepper__bell___Bacterial_spot,0.2132,PlantDoc_Dataset
+877,zip://PlantDoc-Dataset-master/test/Potato leaf late blight/1421_0.jpeg?itok=FMtmgePj.jpg,Potato___Late_blight,Potato___Early_blight,0.9885,PlantDoc_Dataset
+878,zip://PlantDoc-Dataset-master/test/Potato leaf late blight/20090710-lateblight.jpg,Potato___Late_blight,Tomato_Late_blight,0.967,PlantDoc_Dataset
+879,zip://PlantDoc-Dataset-master/test/Potato leaf late blight/2540_600.jpg,Potato___Late_blight,Tomato_Late_blight,0.4691,PlantDoc_Dataset
+880,zip://PlantDoc-Dataset-master/test/Potato leaf late blight/5816740026_d42ef24413_Phytophthora-Infestans.jpg,Potato___Late_blight,Tomato_Late_blight,0.7537,PlantDoc_Dataset
+881,zip://PlantDoc-Dataset-master/test/Potato leaf late blight/B2750109-Late_blight_on_a_potato_plant-SPL.jpg,Potato___Late_blight,07_White_stem_borer,0.9219,PlantDoc_Dataset
+882,zip://PlantDoc-Dataset-master/test/Potato leaf late blight/LateBlight04.jpg,Potato___Late_blight,Tomato_Late_blight,0.392,PlantDoc_Dataset
+883,zip://PlantDoc-Dataset-master/test/Potato leaf late blight/irish-blight-symptoms-on-potato-leaves-atmf8b.jpg,Potato___Late_blight,Tomato_Late_blight,0.9096,PlantDoc_Dataset
+885,zip://PlantDoc-Dataset-master/test/Tomato Early blight leaf/039b47d574bc4bb8a14259a1cd96a741.jpg,Tomato_Early_blight,Tomato_Late_blight,0.7342,PlantDoc_Dataset
+887,zip://PlantDoc-Dataset-master/test/Tomato Early blight leaf/1234080-Early-Blight.jpg,Tomato_Early_blight,Tomato_Late_blight,0.3199,PlantDoc_Dataset
+888,zip://PlantDoc-Dataset-master/test/Tomato Early blight leaf/Shoemaker_7068.JPG.jpg,Tomato_Early_blight,Maize_Healthy,0.3039,PlantDoc_Dataset
+889,zip://PlantDoc-Dataset-master/test/Tomato Early blight leaf/bugs-and-blight-061.jpg,Tomato_Early_blight,04_leaf_sheath_blight,0.6341,PlantDoc_Dataset
+890,zip://PlantDoc-Dataset-master/test/Tomato Early blight leaf/dscn3175.jpg,Tomato_Early_blight,02_turcicum_leaf_blight,0.3803,PlantDoc_Dataset
+891,zip://PlantDoc-Dataset-master/test/Tomato Early blight leaf/early_blight1-150x150.jpg,Tomato_Early_blight,Potato___Early_blight,0.4116,PlantDoc_Dataset
+892,zip://PlantDoc-Dataset-master/test/Tomato Early blight leaf/earlyblight21_.jpg,Tomato_Early_blight,Tomato_Late_blight,0.8164,PlantDoc_Dataset
+893,zip://PlantDoc-Dataset-master/test/Tomato Early blight leaf/tomato_early-blight_01_zoom.jpg,Tomato_Early_blight,Tomato_Bacterial_spot,0.1631,PlantDoc_Dataset
+894,zip://PlantDoc-Dataset-master/test/Tomato Septoria leaf spot/0.jpg,Tomato_Septoria_leaf_spot,Tomato_Late_blight,0.9595,PlantDoc_Dataset
+895,zip://PlantDoc-Dataset-master/test/Tomato Septoria leaf spot/2STEM.jpg,Tomato_Septoria_leaf_spot,Tomato_Early_blight,0.5124,PlantDoc_Dataset
+898,zip://PlantDoc-Dataset-master/test/Tomato Septoria leaf spot/6134794031202304.jpeg.jpg,Tomato_Septoria_leaf_spot,01_aphid,0.2904,PlantDoc_Dataset
+899,zip://PlantDoc-Dataset-master/test/Tomato Septoria leaf spot/636227737977191231-septoria-leaf-spot-VT.jpg,Tomato_Septoria_leaf_spot,03_curvularia_leaf_spot,0.399,PlantDoc_Dataset
+900,zip://PlantDoc-Dataset-master/test/Tomato Septoria leaf spot/6447731_orig.jpg,Tomato_Septoria_leaf_spot,Pepper__bell___Bacterial_spot,0.2405,PlantDoc_Dataset
+901,zip://PlantDoc-Dataset-master/test/Tomato Septoria leaf spot/7-17-Photo3_Septoria-MARY.jpg,Tomato_Septoria_leaf_spot,Potato___Early_blight,0.7502,PlantDoc_Dataset
+902,zip://PlantDoc-Dataset-master/test/Tomato Septoria leaf spot/RARZ4.jpg,Tomato_Septoria_leaf_spot,Maize_Healthy,0.3268,PlantDoc_Dataset
+903,zip://PlantDoc-Dataset-master/test/Tomato Septoria leaf spot/early-blight-septoria-ls-fig-3.jpg,Tomato_Septoria_leaf_spot,Tomato_Late_blight,0.3132,PlantDoc_Dataset
+904,zip://PlantDoc-Dataset-master/test/Tomato Septoria leaf spot/sept4disease-019.jpg,Tomato_Septoria_leaf_spot,Tomato_Early_blight,0.8136,PlantDoc_Dataset
+905,zip://PlantDoc-Dataset-master/test/Tomato leaf bacterial spot/%2320+Bacterial+Spot+and+Speck.jpg,Tomato_Bacterial_spot,Tomato_Late_blight,0.9745,PlantDoc_Dataset
+906,zip://PlantDoc-Dataset-master/test/Tomato leaf bacterial spot/07.17.18-Common_Tomato_Diseases_Canker-258x300.jpg,Tomato_Bacterial_spot,Tomato_Late_blight,0.5013,PlantDoc_Dataset
+907,zip://PlantDoc-Dataset-master/test/Tomato leaf bacterial spot/Bacterial_spots563.jpg,Tomato_Bacterial_spot,Pepper__bell___Bacterial_spot,0.5872,PlantDoc_Dataset
+908,zip://PlantDoc-Dataset-master/test/Tomato leaf bacterial spot/Tom_Bact3.jpg,Tomato_Bacterial_spot,Tomato_Septoria_leaf_spot,0.6401,PlantDoc_Dataset
+909,zip://PlantDoc-Dataset-master/test/Tomato leaf bacterial spot/Tom_Bact7.jpg,Tomato_Bacterial_spot,Pepper__bell___Bacterial_spot,0.4516,PlantDoc_Dataset
+910,zip://PlantDoc-Dataset-master/test/Tomato leaf bacterial spot/Tomato%2BBacterial%2BSpot%2Bon%2BLeaves.jpg,Tomato_Bacterial_spot,Tomato_Early_blight,0.4099,PlantDoc_Dataset
+911,zip://PlantDoc-Dataset-master/test/Tomato leaf bacterial spot/bact-spot-fig-1.jpg,Tomato_Bacterial_spot,Maize_Healthy,0.3174,PlantDoc_Dataset
+912,zip://PlantDoc-Dataset-master/test/Tomato leaf bacterial spot/tomato_V8.jpg,Tomato_Bacterial_spot,Tomato_Leaf_Mold,0.5013,PlantDoc_Dataset
+913,zip://PlantDoc-Dataset-master/test/Tomato leaf bacterial spot/tomato_bacterial-speck_01_zoom.jpg,Tomato_Bacterial_spot,Tomato_Septoria_leaf_spot,0.6527,PlantDoc_Dataset
+917,zip://PlantDoc-Dataset-master/test/Tomato leaf late blight/70.jpg,Tomato_Late_blight,Potato___Early_blight,0.5299,PlantDoc_Dataset
+919,zip://PlantDoc-Dataset-master/test/Tomato leaf late blight/IMG_5808.jpg,Tomato_Late_blight,02_turcicum_leaf_blight,0.531,PlantDoc_Dataset
+920,zip://PlantDoc-Dataset-master/test/Tomato leaf late blight/LateBlt09_06.jpg,Tomato_Late_blight,02_turcicum_leaf_blight,0.577,PlantDoc_Dataset
+921,zip://PlantDoc-Dataset-master/test/Tomato leaf late blight/dsc_8148cs.jpg,Tomato_Late_blight,Potato___Late_blight,0.2459,PlantDoc_Dataset
+922,zip://PlantDoc-Dataset-master/test/Tomato leaf late blight/image.jpg,Tomato_Late_blight,02_fall_armyworm,0.4366,PlantDoc_Dataset
+924,zip://PlantDoc-Dataset-master/test/Tomato leaf mosaic virus/9511.img.jpg,Tomato__Tomato_mosaic_virus,02_fall_armyworm,0.2527,PlantDoc_Dataset
+925,zip://PlantDoc-Dataset-master/test/Tomato leaf mosaic virus/D%29AlfMov.jpg,Tomato__Tomato_mosaic_virus,Tomato_Leaf_Mold,0.767,PlantDoc_Dataset
+926,zip://PlantDoc-Dataset-master/test/Tomato leaf mosaic virus/Tomato-Mosaic-1wdr2jx-300x225.jpg,Tomato__Tomato_mosaic_virus,Tomato_Late_blight,0.3815,PlantDoc_Dataset
+927,zip://PlantDoc-Dataset-master/test/Tomato leaf mosaic virus/everystockphoto-21099455-l.jpg,Tomato__Tomato_mosaic_virus,Pepper__bell___Bacterial_spot,0.631,PlantDoc_Dataset
+928,zip://PlantDoc-Dataset-master/test/Tomato leaf mosaic virus/ill-tomato-of-tomato-mosaic-virus-DBE17N.jpg,Tomato__Tomato_mosaic_virus,Maize_Healthy,0.7457,PlantDoc_Dataset
+929,zip://PlantDoc-Dataset-master/test/Tomato leaf mosaic virus/page_2.jpg,Tomato__Tomato_mosaic_virus,Tomato_Late_blight,0.9906,PlantDoc_Dataset
+930,zip://PlantDoc-Dataset-master/test/Tomato leaf mosaic virus/tmv-tomato-34.jpg,Tomato__Tomato_mosaic_virus,Maize_Healthy,0.6715,PlantDoc_Dataset
+931,zip://PlantDoc-Dataset-master/test/Tomato leaf mosaic virus/tmv-tomato-9.jpg,Tomato__Tomato_mosaic_virus,Tomato_Late_blight,0.6892,PlantDoc_Dataset
+932,zip://PlantDoc-Dataset-master/test/Tomato leaf mosaic virus/toma_TMV.jpg,Tomato__Tomato_mosaic_virus,Tomato_Late_blight,0.861,PlantDoc_Dataset
+933,zip://PlantDoc-Dataset-master/test/Tomato leaf mosaic virus/tomato_virus_04_zoom.jpg,Tomato__Tomato_mosaic_virus,01_maydis_leaf_blight,0.3775,PlantDoc_Dataset
+935,zip://PlantDoc-Dataset-master/test/Tomato leaf yellow virus/17fc47.jpg,Tomato__Tomato_YellowLeaf__Curl_Virus,Maize_Healthy,0.2569,PlantDoc_Dataset
+936,zip://PlantDoc-Dataset-master/test/Tomato leaf yellow virus/8226402877_9abf151b5b_b.jpg,Tomato__Tomato_YellowLeaf__Curl_Virus,01_maydis_leaf_blight,0.4232,PlantDoc_Dataset
+937,zip://PlantDoc-Dataset-master/test/Tomato leaf yellow virus/fwa2013313115151.jpg,Tomato__Tomato_YellowLeaf__Curl_Virus,01_maydis_leaf_blight,0.408,PlantDoc_Dataset
+938,zip://PlantDoc-Dataset-master/test/Tomato leaf yellow virus/glyphosate.jpg,Tomato__Tomato_YellowLeaf__Curl_Virus,Pepper__bell___Bacterial_spot,0.3695,PlantDoc_Dataset
+939,zip://PlantDoc-Dataset-master/test/Tomato leaf yellow virus/tylcv-seminar-1-638.jpg,Tomato__Tomato_YellowLeaf__Curl_Virus,02_Brown_spot,0.5465,PlantDoc_Dataset
+940,zip://PlantDoc-Dataset-master/test/Tomato leaf/1684.jpg,Tomato_healthy,Tomato_Septoria_leaf_spot,0.8702,PlantDoc_Dataset
+941,zip://PlantDoc-Dataset-master/test/Tomato leaf/2013-08-20-06.jpg,Tomato_healthy,Tomato_Bacterial_spot,0.8297,PlantDoc_Dataset
+942,zip://PlantDoc-Dataset-master/test/Tomato leaf/90e2c0.jpg,Tomato_healthy,Tomato__Tomato_mosaic_virus,0.2583,PlantDoc_Dataset
+943,zip://PlantDoc-Dataset-master/test/Tomato leaf/DSCN1015.JPG.jpg,Tomato_healthy,Tomato_Late_blight,0.4299,PlantDoc_Dataset
+944,zip://PlantDoc-Dataset-master/test/Tomato leaf/IMG_1246.jpg,Tomato_healthy,Maize_Healthy,0.8499,PlantDoc_Dataset
+945,zip://PlantDoc-Dataset-master/test/Tomato leaf/Tomato59.JPG.jpg,Tomato_healthy,Maize_Healthy,0.8348,PlantDoc_Dataset
+946,zip://PlantDoc-Dataset-master/test/Tomato leaf/Tomato_leaf.jpg,Tomato_healthy,01_aphid,0.2956,PlantDoc_Dataset
+947,zip://PlantDoc-Dataset-master/test/Tomato leaf/main-qimg-d9c2a93f60568485c989670d9bbf703b.jpg,Tomato_healthy,07_White_stem_borer,0.7502,PlantDoc_Dataset
+948,zip://PlantDoc-Dataset-master/test/Tomato mold leaf/49%20Leafmold%20Bottom.jpg,Tomato_Leaf_Mold,Tomato__Target_Spot,0.4244,PlantDoc_Dataset
+949,zip://PlantDoc-Dataset-master/test/Tomato mold leaf/50%20Leafmold%20Top.jpg,Tomato_Leaf_Mold,Tomato_Late_blight,0.37,PlantDoc_Dataset
+950,zip://PlantDoc-Dataset-master/test/Tomato mold leaf/BIGSD.jpg,Tomato_Leaf_Mold,05_Leaf_folder,0.2825,PlantDoc_Dataset
+951,zip://PlantDoc-Dataset-master/test/Tomato mold leaf/black_leaf_mold_in_zina_tina.jpg,Tomato_Leaf_Mold,01_maydis_leaf_blight,0.3919,PlantDoc_Dataset
+952,zip://PlantDoc-Dataset-master/test/Tomato mold leaf/dscn6689.jpg,Tomato_Leaf_Mold,Maize_Healthy,0.5888,PlantDoc_Dataset
+953,zip://PlantDoc-Dataset-master/test/Tomato mold leaf/fungus-univ-of-minnesoeta.jpg,Tomato_Leaf_Mold,03_FAW_symptoms,0.6944,PlantDoc_Dataset
+954,zip://PlantDoc-Dataset-master/train/Tomato two spotted spider mites leaf/SpotSpeckBlightMite-1l4v879.jpg,Tomato_Spider_mites_Two_spotted_spider_mite,07_White_stem_borer,0.6542,PlantDoc_Dataset
+955,zip://PlantDoc-Dataset-master/train/Tomato two spotted spider mites leaf/comparing-diseases-4-canker-tomato-1y51ejs.jpg,Tomato_Spider_mites_Two_spotted_spider_mite,Pepper__bell___Bacterial_spot,0.6353,PlantDoc_Dataset

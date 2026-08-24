@@ -1,0 +1,35 @@
+# Environment and Secret Files
+.env
+.env*
+!.env.example
+!.env.local.example
+
+# Python Cache and Virtual Environments
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+env/
+ENV/
+.venv
+
+# Local SQLite Databases and Index Files
+*.db
+*.sqlite
+*.sqlite3
+agrirakshak.db
+
+# Node.js and Next.js Build Outputs
+node_modules/
+.next/
+out/
+build/
+dist/
+
+# OS and IDE Files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.tmp

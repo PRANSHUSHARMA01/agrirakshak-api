@@ -1,0 +1,3 @@
+- [ ] Package the complete source code without build artifacts or installed dependencies.
+- [ ] Verify the archive includes the application, configuration, design notes, and setup files.
+- [ ] Deliver the downloadable source archive.
