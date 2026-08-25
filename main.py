@@ -1,6 +1,7 @@
 import io
 import json
 import os
+import sys
 from pathlib import Path
 from typing import Dict, Any
 
@@ -22,13 +23,18 @@ MODEL_PATH = BASE_DIR / "best_agri_finetuned.keras"
 CLASS_NAMES_PATH = BASE_DIR / "class_names.json"
 IMG_SIZE = (224, 224)
 
+# Ensure backend directory is in sys.path to load routers
+backend_dir = BASE_DIR / "agrirakshak" / "backend"
+if backend_dir.exists() and str(backend_dir) not in sys.path:
+    sys.path.insert(0, str(backend_dir))
+
 # ============================================================
 # CREATE FASTAPI APP
 # ============================================================
 
 app = FastAPI(
     title="AgriRakshak AI API",
-    description="Crop disease detection API using fine-tuned Keras model",
+    description="Crop disease detection API using fine-tuned Keras model and Officer Console API",
     version="1.0.0"
 )
 
@@ -40,6 +46,19 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Mount AgriRakshak Core Routers (Auth, Dashboard, Reports, Chat, Weather)
+try:
+    from app.routers import health as h_router, auth, prediction, chat, weather, reports, dashboard
+    app.include_router(auth.router)
+    app.include_router(prediction.router)
+    app.include_router(chat.router)
+    app.include_router(weather.router)
+    app.include_router(reports.router)
+    app.include_router(dashboard.router)
+    print("ALL AGRIRAKSHAK ROUTERS (AUTH, DASHBOARD, REPORTS, CHAT) MOUNTED SUCCESSFULLY!")
+except Exception as e:
+    print(f"Warning mounting backend routers in root main.py: {e}")
 
 # Global variables for loaded resources
 model = None
@@ -60,14 +79,12 @@ def load_resources():
             model = keras.models.load_model(str(MODEL_PATH))
             model_loaded = True
             print("MODEL LOADED SUCCESSFULLY")
-            print("INPUT SHAPE:", model.input_shape)
-            print("OUTPUT SHAPE:", model.output_shape)
         except Exception as e:
             print(f"Error loading model from '{MODEL_PATH}': {e}")
             model_loaded = False
     else:
-        print(f"WARNING: Model file '{MODEL_PATH}' not found.")
-        model_loaded = False
+            print(f"WARNING: Model file '{MODEL_PATH}' not found.")
+            model_loaded = False
 
     # Load Class Names using absolute/project-relative path
     if CLASS_NAMES_PATH.exists():
@@ -91,20 +108,15 @@ load_resources()
 
 @app.get("/")
 def home() -> Dict[str, Any]:
-    """
-    Root endpoint: Returns API name, version, and status.
-    """
     return {
         "name": "AgriRakshak AI API",
         "version": "1.0.0",
-        "status": "online"
+        "status": "online",
+        "docs": "/docs"
     }
 
 @app.get("/health")
 def health() -> Dict[str, Any]:
-    """
-    Health check endpoint.
-    """
     is_healthy = model_loaded and len(class_names) == 32
     return {
         "status": "ok" if is_healthy else "degraded",
@@ -114,10 +126,6 @@ def health() -> Dict[str, Any]:
 
 @app.post("/predict")
 async def predict(file: UploadFile = File(...)) -> JSONResponse:
-    """
-    Predict crop disease from an uploaded image file.
-    """
-    # 1. Ensure resources are loaded
     if not model_loaded or model is None:
         raise HTTPException(
             status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
@@ -130,7 +138,6 @@ async def predict(file: UploadFile = File(...)) -> JSONResponse:
             detail="Class names are not loaded."
         )
 
-    # 2. Validate file type if specified
     if file.content_type and not file.content_type.startswith("image/"):
         return JSONResponse(
             status_code=status.HTTP_400_BAD_REQUEST,
@@ -140,7 +147,6 @@ async def predict(file: UploadFile = File(...)) -> JSONResponse:
             }
         )
 
-    # 3. Read image and convert to RGB
     try:
         contents = await file.read()
         image = Image.open(io.BytesIO(contents)).convert("RGB")
@@ -153,12 +159,10 @@ async def predict(file: UploadFile = File(...)) -> JSONResponse:
             }
         )
 
-    # 4. Preprocess image (Resize to 224x224 RGB, convert to float32 array in [0, 255] range as expected by EfficientNet Rescaling layer)
     image = image.resize(IMG_SIZE)
     img_array = np.array(image, dtype=np.float32)
     img_array = np.expand_dims(img_array, axis=0)
 
-    # 5. Model Inference & Top Predictions
     try:
         predictions = model.predict(img_array, verbose=0)
         scores = predictions[0]
@@ -171,7 +175,6 @@ async def predict(file: UploadFile = File(...)) -> JSONResponse:
             else f"Class_{top_index}"
         )
 
-        # Top 3 predictions
         top_3_indices = np.argsort(scores)[::-1][:3]
         top_predictions = [
             {
