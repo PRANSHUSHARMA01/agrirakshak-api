@@ -64,6 +64,24 @@ class PredictionClient:
         self.base_url = (base_url or PREDICTION_API_URL).rstrip("/")
         self.threshold = threshold if threshold is not None else PREDICTION_CONFIDENCE_THRESHOLD
 
+    def check_health(self) -> Dict[str, Any]:
+        """
+        Check health status of prediction service (HTTP endpoint or in-process model).
+        """
+        try:
+            resp = requests.get(f"{self.base_url}/health", timeout=2.0)
+            if resp.status_code == 200:
+                return resp.json()
+        except Exception:
+            pass
+
+        is_proc = _init_in_process_model()
+        return {
+            "status": "ok" if is_proc else "degraded",
+            "in_process_model_loaded": is_proc,
+            "classes": len(_in_process_class_names)
+        }
+
     def predict_in_process(self, image_bytes: bytes) -> Optional[Dict[str, Any]]:
         """
         Runs image inference in-process using best_agri_finetuned.keras if available.
