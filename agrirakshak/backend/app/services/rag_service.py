@@ -38,12 +38,12 @@ def search_local_knowledge_base(query: str) -> List[Dict[str, str]]:
 
 def query_gemini_api(system_prompt: str, user_query: str, api_key: str) -> Optional[str]:
     """
-    Calls Google Gemini API (expects a standard AI Studio key starting with AIzaSy...).
+    Calls Google Gemini API using REST endpoint with fast 5-second timeout for interactive response.
     """
-    if not api_key or not api_key.startswith("AIzaSy"):
+    if not api_key:
         return None
 
-    full_prompt = f"{system_prompt}\n\nFARMER QUESTION: {user_query}"
+    full_prompt = f"{system_prompt}\n\nUSER MESSAGE: {user_query}"
     models = ["gemini-2.0-flash", "gemini-1.5-flash-latest", "gemini-flash-latest"]
 
     for model_name in models:
@@ -51,9 +51,9 @@ def query_gemini_api(system_prompt: str, user_query: str, api_key: str) -> Optio
             url = f"https://generativelanguage.googleapis.com/v1beta/models/{model_name}:generateContent?key={api_key}"
             payload = {
                 "contents": [{"parts": [{"text": full_prompt}]}],
-                "generationConfig": {"maxOutputTokens": 400, "temperature": 0.2}
+                "generationConfig": {"maxOutputTokens": 450, "temperature": 0.4}
             }
-            resp = requests.post(url, json=payload, timeout=6)
+            resp = requests.post(url, json=payload, timeout=5)
             if resp.status_code == 200:
                 candidates = resp.json().get("candidates", [])
                 if candidates:
@@ -69,25 +69,43 @@ def query_gemini_api(system_prompt: str, user_query: str, api_key: str) -> Optio
 
 def synthesize_dynamic_advisory(query: str, search_results: List[Dict[str, str]]) -> AdvisoryResponse:
     """
-    Synthesizes a unique, dynamic, question-specific response based on ICAR knowledge base files.
+    Synthesizes a unique, interactive, question-specific response based on query intent and ICAR knowledge base.
     """
-    q_lower = query.lower()
-    is_hindi = any("\u0900" <= char <= "\u097F" for char in query) or any(w in q_lower for w in ["daag", "fasal", "dhan", "kya", "ilaj", "rog", "karein"])
+    q_lower = query.lower().strip()
+    is_hindi = any("\u0900" <= char <= "\u097F" for char in query) or any(w in q_lower for w in ["daag", "fasal", "dhan", "kya", "ilaj", "rog", "karein", "namaste", "ram", "kaise"])
 
-    if not search_results:
+    # Greetings & General Conversational Intent
+    if any(w in q_lower for w in ["hello", "hi", "hey", "namaste", "ram ram", "pranam", "who are you", "kaun ho", "kaise ho", "help"]):
         if is_hindi:
-            answer = f"राम-राम किसान भाई! **'{query}'** के संबंध में: फसल की नियमित निगरानी करें। यदि पत्तियों पर धब्बे दिखें तो जलभराव रोकें और पास के कृषि विज्ञान केंद्र (KVK) से संपर्क करें।"
+            answer = "राम-राम किसान भाई! मैं **AgriRakshak AI** हूँ, आपका व्यक्तिगत कृषि मित्र। आप मुझसे फसलों के रोग, कीड़े, खाद, सिंचाई, मौसम या फसल सुरक्षा से जुड़ा कोई भी सवाल पूछ सकते हैं।"
         else:
-            answer = f"Greetings farmer! Regarding **'{query}'**: Monitor your crop daily for symptoms. Maintain balanced irrigation and consult your nearest Krishi Vigyan Kendra (KVK) for advice."
+            answer = "Greetings farmer! I am **AgriRakshak AI**, your personal agricultural companion. You can ask me about crop diseases, pest control, fertilizers, irrigation, or weather alerts."
         
         return AdvisoryResponse(
             diagnosis_or_answer=answer,
             recommended_actions=[
-                "Inspect leaves daily for early spots or wilting.",
-                "Ensure proper field drainage.",
-                "Consult local extension officers."
+                "Ask a question like 'Dhan me brown spot ka ilaj kya hai'.",
+                "Scan or upload a photo of your crop leaf for instant diagnosis.",
+                "Check current weather risk alerts for your district."
             ],
-            safety_notes=["Follow official label directions for any spray application."],
+            safety_notes=["AgriRakshak is specialized for Indian farming & ICAR agronomy."],
+            escalation_flag=False
+        )
+
+    if not search_results:
+        if is_hindi:
+            answer = f"राम-राम किसान भाई! **'{query}'** के बारे में: अपनी फसल की पत्तियों और तने का निरीक्षण करें। संतुलित उर्वरक (NPK) प्रयोग करें, सही जल निकासी रखें और आवश्यकता होने पर नजदीकी कृषि विज्ञान केंद्र (KVK) से सलाह लें।"
+        else:
+            answer = f"Greetings farmer! Regarding **'{query}'**: Monitor your crop daily for early symptoms, maintain proper field drainage, apply balanced NPK fertilizers, and consult your local extension officer."
+        
+        return AdvisoryResponse(
+            diagnosis_or_answer=answer,
+            recommended_actions=[
+                "Inspect leaves daily for early spots, yellowing, or wilting.",
+                "Ensure proper field drainage and avoid standing water.",
+                "Consult local Krishi Vigyan Kendra (KVK) for specialized advice."
+            ],
+            safety_notes=["Follow official label directions for all spray applications."],
             escalation_flag=False
         )
 
@@ -125,19 +143,19 @@ def synthesize_dynamic_advisory(query: str, search_results: List[Dict[str, str]]
             elif current_section == "safety" and l_str.startswith("- "):
                 safety.append(l_str.lstrip("- ").strip())
 
-    # Customize answer based on what the user asked
+    # Customize answer based on query
     if any(w in q_lower for w in ["symptom", "identify", "pechan", "daag", "spot", "look"]):
         if symptoms:
-            answer = f"Based on **AgriRakshak Knowledge Base ({title}) Key Symptoms**:\n\n" + " ".join(symptoms[:3])
+            answer = f"Based on **AgriRakshak Knowledge Base ({title}) Symptoms**:\n\n" + " ".join(symptoms[:3])
         else:
             answer = f"Based on **AgriRakshak Knowledge Base ({title})**:\n\n{overview_text[:280]}..."
     elif any(w in q_lower for w in ["treat", "control", "spray", "ilaj", "dawai", "remedy", "cure"]):
-        answer = f"Based on **AgriRakshak Knowledge Base ({title}) Recommended Treatments**:\n\n{overview_text[:200]}..."
+        answer = f"Based on **AgriRakshak Knowledge Base ({title}) Recommended Treatments**:\n\n{overview_text[:250]}..."
     else:
         answer = f"Based on **AgriRakshak Knowledge Base ({title})**:\n\n{overview_text[:300]}..."
 
     if is_hindi:
-        answer = f"राम-राम किसान भाई! **{title}** के संबंध में जानकारी:\n\n" + (overview_text[:280] if overview_text else "अपनी फसल की नियमित जांच करें।")
+        answer = f"राम-राम किसान भाई! **{title}** के संदर्भ में:\n\n" + (overview_text[:280] if overview_text else "अपनी फसल की नियमित जांच करें।")
 
     if not actions:
         actions = symptoms[:3] if symptoms else [
@@ -165,13 +183,13 @@ def query_rag(query: str, crop: Optional[str] = None) -> AdvisoryResponse:
     """
     search_results = search_local_knowledge_base(query)
 
-    # 1. Try Gemini API if standard AI Studio key provided
+    # 1. Try Gemini API if API key provided
     gemini_key = settings.GEMINI_API_KEY or os.environ.get("GEMINI_API_KEY", "")
-    if gemini_key and gemini_key.startswith("AIzaSy"):
+    if gemini_key:
         context_text = "\n\n".join([r["content"] for r in search_results[:2]])
         system_prompt = (
-            "You are AgriRakshak, an expert agricultural AI assistant for Indian farmers. "
-            "Provide clear advice for Indian farmers. "
+            "You are AgriRakshak, a helpful, conversational AI agricultural assistant for Indian farmers. "
+            "Reply warmly and interactively. Answer the user's exact message directly. "
             "If in Hindi, reply in friendly Hindi. If in English, reply in clear English."
         )
         if context_text:
@@ -181,10 +199,10 @@ def query_rag(query: str, crop: Optional[str] = None) -> AdvisoryResponse:
         if ai_output:
             return AdvisoryResponse(
                 diagnosis_or_answer=ai_output,
-                recommended_actions=["Inspect crops daily.", "Maintain field drainage.", "Follow label instructions."],
+                recommended_actions=["Inspect crops daily for symptoms.", "Maintain field drainage.", "Follow label instructions."],
                 safety_notes=["Consult local extension officers for regional advice."],
                 escalation_flag=False
             )
 
-    # 2. Dynamic Q&A synthesis tailored to exact user query
+    # 2. Dynamic interactive Q&A synthesis tailored to user query
     return synthesize_dynamic_advisory(query, search_results)

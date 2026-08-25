@@ -20,7 +20,7 @@ router = APIRouter(prefix="/chat", tags=["Chat"])
 def handle_chat_message(payload: ChatMessageRequest, db: Session = Depends(get_db)):
     """
     Main entrypoint for AgriRakshak farmer interactions.
-    Dynamically routes queries and returns structured advisory localized in specified language.
+    Dynamically routes queries and returns structured interactive advisory localized in specified language.
     """
     has_image = bool(payload.image_base64)
     intent = classify_intent(payload.message or "", has_image=has_image)
@@ -116,16 +116,7 @@ def handle_chat_message(payload: ChatMessageRequest, db: Session = Depends(get_d
                 advisory=translate_advisory(advisory, lang)
             )
 
-    # INTENT 2: KNOWLEDGE QUERY (RAG)
-    if intent == "knowledge_query":
-        raw_advisory = query_rag(payload.message or "", crop=payload.crop)
-        return ChatMessageResponse(
-            intent="knowledge_query",
-            session_id=payload.session_id,
-            advisory=translate_advisory(raw_advisory, lang)
-        )
-
-    # INTENT 3: WEATHER RISK
+    # INTENT 2: WEATHER RISK
     if intent == "weather_risk":
         lat = payload.latitude or 28.6139
         lon = payload.longitude or 77.2090
@@ -148,19 +139,10 @@ def handle_chat_message(payload: ChatMessageRequest, db: Session = Depends(get_d
             weather_risk=w_res.model_dump()
         )
 
-    # INTENT 4: GENERAL / UNRELATED
-    raw_advisory = AdvisoryResponse(
-        diagnosis_or_answer="I can currently help with crop health, crop diseases, pests, weather risks and agricultural guidance.",
-        recommended_actions=[
-            "Scan a leaf photo for disease diagnosis.",
-            "Ask questions like 'Meri fasal mein daag hain' or 'Rice blast kya hai'.",
-            "Check current weather disease risk alerts."
-        ],
-        safety_notes=["AgriRakshak is specialized exclusively for agriculture and crop protection."],
-        escalation_flag=False
-    )
+    # ALL TEXT CONVERSATIONS & KNOWLEDGE QUERIES: Route to RAG / Gemini Engine
+    raw_advisory = query_rag(payload.message or "", crop=payload.crop)
     return ChatMessageResponse(
-        intent="general",
+        intent="knowledge_query",
         session_id=payload.session_id,
         advisory=translate_advisory(raw_advisory, lang)
     )
