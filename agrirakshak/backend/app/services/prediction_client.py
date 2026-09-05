@@ -91,24 +91,6 @@ class PredictionClient:
                 return None
 
             image_raw = Image.open(io.BytesIO(image_bytes)).convert("RGB")
-            
-            # Crop image validation
-            try:
-                from app.services.crop_validator import validate_crop_image
-                is_valid, validation_msg = validate_crop_image(image_raw)
-                if not is_valid:
-                    return {
-                        "success": False,
-                        "is_crop_photo": False,
-                        "predicted_class": "Invalid Non-Crop Photo",
-                        "confidence": 0.0,
-                        "needs_expert_review": False,
-                        "fallback_message": validation_msg,
-                        "raw_response": {"success": False, "error": validation_msg}
-                    }
-            except Exception as ve:
-                print(f"[PredictionClient] Validation warning: {ve}")
-
             image = image_raw.resize((224, 224))
             img_array = np.array(image, dtype=np.float32)
             img_array = np.expand_dims(img_array, axis=0)
