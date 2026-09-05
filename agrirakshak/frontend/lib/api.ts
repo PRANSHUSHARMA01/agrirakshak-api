@@ -1,7 +1,7 @@
 import { ChatResponse, WeatherRisk, FarmerCase, EscalationCase, DashboardStats } from "./types";
 import { getAuthToken } from "./auth";
 
-const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:8001";
+const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || "https://agrirakshak-model.onrender.com";
 
 async function fetchAPI<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
   const token = getAuthToken();

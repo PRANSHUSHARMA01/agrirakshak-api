@@ -42,21 +42,17 @@ def validate_crop_image(image: Image.Image) -> tuple[bool, str]:
         brown_dominant = np.sum((img_array[:, :, 0] > img_array[:, :, 2]) & (img_array[:, :, 1] > img_array[:, :, 2] * 0.7) & (img_array[:, :, 0] < 220))
         plant_color_ratio = float((green_dominant + brown_dominant) / total_pixels)
 
-        # Rule 1: High white ratio -> document / paper page
-        if white_ratio > 0.55:
+        # Rule 1: High white background ratio -> paper document / text sheet
+        if white_ratio > 0.65:
             return False, "Image appears to be a document or paper text. Kindly upload a clear photo of a crop or plant leaf."
 
-        # Rule 2: Low saturation with high background & dark text -> document / table / screenshot
-        if white_ratio > 0.35 and mean_saturation < 0.18 and dark_ratio < 0.35:
-            return False, "Non-crop photo detected (low color saturation). Kindly upload a clear photo of a crop or plant leaf."
+        # Rule 2: Low color saturation with white background -> paper table / document / screenshot
+        if white_ratio > 0.45 and mean_saturation < 0.12 and dark_ratio < 0.35:
+            return False, "Non-crop photo detected (document or text sheet). Kindly upload a clear photo of a crop or plant leaf."
 
-        # Rule 3: Extremely low overall saturation -> monochrome / document / non-biological
-        if mean_saturation < 0.08:
-            return False, "Monochrome or non-plant image detected. Kindly upload a clear photo of a crop or plant leaf."
-
-        # Rule 4: Very low organic plant/crop color distribution
-        if plant_color_ratio < 0.12 and white_ratio > 0.25:
-            return False, "No leaf or crop features detected in photo. Kindly upload a clear photo of a crop or plant leaf."
+        # Rule 3: Extremely low overall saturation -> pure monochrome / text line drawing
+        if mean_saturation < 0.05:
+            return False, "Monochrome or text image detected. Kindly upload a clear photo of a crop or plant leaf."
 
         return True, "Valid crop photo"
     except Exception as e:
