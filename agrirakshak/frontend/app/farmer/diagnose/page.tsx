@@ -93,7 +93,22 @@ export default function DirectDiagnosePage() {
       // Direct prediction API fallback if main backend route is unreachable
       try {
         const formData = new FormData();
-        const blob = await (await fetch(b64)).blob();
+        let blob: Blob;
+        if (b64.startsWith("data:")) {
+          const parts = b64.split(",");
+          const mimeMatch = parts[0].match(/:(.*?);/);
+          const mime = mimeMatch ? mimeMatch[1] : "image/jpeg";
+          const bstr = atob(parts[1] || "");
+          let n = bstr.length;
+          const u8arr = new Uint8Array(n);
+          while (n--) {
+            u8arr[n] = bstr.charCodeAt(n);
+          }
+          blob = new Blob([u8arr], { type: mime });
+        } else {
+          blob = await (await fetch(b64)).blob();
+        }
+
         formData.append("file", blob, "crop.jpg");
         const directRes = await fetch("https://agrirakshak-model.onrender.com/predict", {
           method: "POST",
