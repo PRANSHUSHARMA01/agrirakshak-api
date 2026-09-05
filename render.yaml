@@ -21,3 +21,5 @@ services:
     envVars:
       - key: PYTHON_VERSION
         value: 3.11.0
+      - key: PREDICTION_API_URL
+        value: https://agrirakshak-model.onrender.com

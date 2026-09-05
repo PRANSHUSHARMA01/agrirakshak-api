@@ -7,7 +7,7 @@ from typing import Dict, Any, Optional
 from PIL import Image
 import numpy as np
 
-PREDICTION_API_URL = os.getenv("PREDICTION_API_URL", "http://127.0.0.1:8000").rstrip("/")
+PREDICTION_API_URL = os.getenv("PREDICTION_API_URL", "https://agrirakshak-model.onrender.com").rstrip("/")
 PREDICTION_CONFIDENCE_THRESHOLD = float(os.getenv("PREDICTION_CONFIDENCE_THRESHOLD", "0.60"))
 
 # In-process Keras model fallback initialization
