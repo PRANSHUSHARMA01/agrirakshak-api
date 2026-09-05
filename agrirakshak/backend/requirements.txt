@@ -17,3 +17,6 @@ faiss-cpu>=1.8.0
 psycopg2-binary>=2.9.9
 geoalchemy2>=0.14.0
 pillow>=10.0.0
+numpy>=1.26.0
+tensorflow-cpu>=2.15.0
+keras>=3.0.0
