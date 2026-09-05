@@ -28,6 +28,8 @@ backend_dir = BASE_DIR / "agrirakshak" / "backend"
 if backend_dir.exists() and str(backend_dir) not in sys.path:
     sys.path.insert(0, str(backend_dir))
 
+from app.services.crop_validator import validate_crop_image
+
 # ============================================================
 # CREATE FASTAPI APP
 # ============================================================
@@ -159,8 +161,23 @@ async def predict(file: UploadFile = File(...)) -> JSONResponse:
             }
         )
 
-    image = image.resize(IMG_SIZE)
-    img_array = np.array(image, dtype=np.float32)
+    # Validate if uploaded image is a valid crop/leaf photo
+    is_valid, validation_msg = validate_crop_image(image)
+    if not is_valid:
+        return JSONResponse(
+            status_code=status.HTTP_200_OK,
+            content={
+                "success": False,
+                "is_crop_photo": False,
+                "error": validation_msg,
+                "predicted_class": "Invalid Non-Crop Photo",
+                "prediction": "Invalid Non-Crop Photo",
+                "confidence": 0.0
+            }
+        )
+
+    image_resized = image.resize(IMG_SIZE)
+    img_array = np.array(image_resized, dtype=np.float32)
     img_array = np.expand_dims(img_array, axis=0)
 
     try:

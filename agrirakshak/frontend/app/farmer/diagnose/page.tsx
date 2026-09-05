@@ -77,6 +77,12 @@ export default function DirectDiagnosePage() {
       });
 
       if (res.prediction_result) {
+        if (res.prediction_result.success === false || (res.prediction_result as any).is_crop_photo === false) {
+          alert((res.prediction_result as any).fallback_message || "Kindly upload a clear photo of a crop or plant leaf.");
+          setPrediction(null);
+          setAdvisory(null);
+          return;
+        }
         setPrediction(res.prediction_result);
       }
       if (res.advisory) {
@@ -84,26 +90,9 @@ export default function DirectDiagnosePage() {
       }
     } catch (err) {
       console.error("Diagnosis error:", err);
-      // Clean fallback demo result if backend API is offline
-      setPrediction({
-        success: true,
-        predicted_class: "01_Bacterial_leaf_blight",
-        confidence: 0.94,
-        needs_expert_review: false,
-      });
-      setAdvisory({
-        diagnosis_or_answer: "The detected symptoms are consistent with Bacterial Leaf Blight in rice.",
-        recommended_actions: [
-          "Inspect nearby plants for water-soaked leaf margins.",
-          "Remove severely affected leaves where appropriate.",
-          "Maintain proper field drainage and avoid waterlogging.",
-          "Follow locally approved crop-management guidance."
-        ],
-        safety_notes: [
-          "Always follow official product labels and locally approved agricultural recommendations."
-        ],
-        escalation_flag: false,
-      });
+      alert("Kindly upload a clear photo of a crop or plant leaf.");
+      setPrediction(null);
+      setAdvisory(null);
     } finally {
       setAnalyzing(false);
     }

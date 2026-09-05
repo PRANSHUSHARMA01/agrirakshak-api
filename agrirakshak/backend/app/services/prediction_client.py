@@ -90,7 +90,26 @@ class PredictionClient:
             if not _init_in_process_model() or _in_process_model is None:
                 return None
 
-            image = Image.open(io.BytesIO(image_bytes)).convert("RGB").resize((224, 224))
+            image_raw = Image.open(io.BytesIO(image_bytes)).convert("RGB")
+            
+            # Crop image validation
+            try:
+                from app.services.crop_validator import validate_crop_image
+                is_valid, validation_msg = validate_crop_image(image_raw)
+                if not is_valid:
+                    return {
+                        "success": False,
+                        "is_crop_photo": False,
+                        "predicted_class": "Invalid Non-Crop Photo",
+                        "confidence": 0.0,
+                        "needs_expert_review": False,
+                        "fallback_message": validation_msg,
+                        "raw_response": {"success": False, "error": validation_msg}
+                    }
+            except Exception as ve:
+                print(f"[PredictionClient] Validation warning: {ve}")
+
+            image = image_raw.resize((224, 224))
             img_array = np.array(image, dtype=np.float32)
             img_array = np.expand_dims(img_array, axis=0)
 
@@ -142,7 +161,7 @@ class PredictionClient:
 
         # 1. Try external HTTP microservice
         try:
-            resp = requests.post(endpoint, files=files, timeout=3.0)
+            resp = requests.post(endpoint, files=files, timeout=4.0)
             if resp.status_code == 200:
                 raw_data = resp.json()
                 if raw_data.get("success", False):
@@ -156,6 +175,17 @@ class PredictionClient:
                         "predicted_class": predicted_class,
                         "confidence": conf_normalized,
                         "needs_expert_review": needs_expert,
+                        "raw_response": raw_data
+                    }
+                else:
+                    # Microservice rejected as non-crop image
+                    return {
+                        "success": False,
+                        "is_crop_photo": False,
+                        "predicted_class": raw_data.get("predicted_class", "Invalid Non-Crop Photo"),
+                        "confidence": 0.0,
+                        "needs_expert_review": False,
+                        "fallback_message": raw_data.get("error", "Kindly upload a clear photo of a crop or plant leaf."),
                         "raw_response": raw_data
                     }
         except Exception as e:
