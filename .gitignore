@@ -35,3 +35,5 @@ Thumbs.db
 *.tmp
 
 agrirakshak-full-source-code.zip
+saved_model_clean/
+saved_model_export/

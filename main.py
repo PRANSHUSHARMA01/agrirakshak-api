@@ -63,30 +63,59 @@ except Exception as e:
     print(f"Warning mounting backend routers in root main.py: {e}")
 
 # Global variables for loaded resources
-model = None
+interpreter = None
+keras_model = None
+use_tflite = False
 class_names = []
 model_loaded = False
+
+TFLITE_PATH = BASE_DIR / "best_agri_finetuned.tflite"
+
+# Set TensorFlow memory and logging options
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
 
 # ============================================================
 # RESOURCE LOADING
 # ============================================================
 
 def load_resources():
-    global model, class_names, model_loaded
+    global interpreter, keras_model, use_tflite, class_names, model_loaded
 
-    # Load Model using absolute/project-relative path
-    if MODEL_PATH.exists():
+    # 1. Try loading TFLite model first (Lightweight, low RAM footprint ~30MB)
+    if TFLITE_PATH.exists():
         try:
-            print(f"Loading AgriRakshak model from '{MODEL_PATH}'...")
-            model = keras.models.load_model(str(MODEL_PATH))
+            print(f"Loading AgriRakshak TFLite model from '{TFLITE_PATH}'...")
+            try:
+                import tflite_runtime.interpreter as tflite
+                interpreter = tflite.Interpreter(model_path=str(TFLITE_PATH))
+            except ImportError:
+                import tensorflow as tf
+                interpreter = tf.lite.Interpreter(model_path=str(TFLITE_PATH))
+            
+            interpreter.allocate_tensors()
+            use_tflite = True
             model_loaded = True
-            print("MODEL LOADED SUCCESSFULLY")
+            print("TFLITE MODEL LOADED SUCCESSFULLY (Low-Memory Mode)")
         except Exception as e:
-            print(f"Error loading model from '{MODEL_PATH}': {e}")
+            print(f"Error loading TFLite model: {e}")
+            use_tflite = False
+
+    # 2. Fallback to Keras model if TFLite failed or not present
+    if not model_loaded and MODEL_PATH.exists():
+        try:
+            print(f"Loading AgriRakshak Keras model from '{MODEL_PATH}'...")
+            import keras
+            keras_model = keras.models.load_model(str(MODEL_PATH))
+            use_tflite = False
+            model_loaded = True
+            print("KERAS MODEL LOADED SUCCESSFULLY")
+        except Exception as e:
+            print(f"Error loading Keras model from '{MODEL_PATH}': {e}")
             model_loaded = False
-    else:
-            print(f"WARNING: Model file '{MODEL_PATH}' not found.")
-            model_loaded = False
+            
+    if not model_loaded:
+        print("WARNING: Neither TFLite nor Keras model could be loaded.")
 
     # Load Class Names using absolute/project-relative path
     if CLASS_NAMES_PATH.exists():
@@ -101,8 +130,9 @@ def load_resources():
     else:
         print(f"WARNING: Class names file '{CLASS_NAMES_PATH}' not found.")
 
-# Load resources once when application starts
-load_resources()
+@app.on_event("startup")
+def startup_event():
+    load_resources()
 
 # ============================================================
 # ENDPOINTS
@@ -123,12 +153,13 @@ def health() -> Dict[str, Any]:
     return {
         "status": "ok" if is_healthy else "degraded",
         "model_loaded": model_loaded,
+        "mode": "tflite" if use_tflite else ("keras" if model_loaded else "none"),
         "classes": len(class_names)
     }
 
 @app.post("/predict")
 async def predict(file: UploadFile = File(...)) -> JSONResponse:
-    if not model_loaded or model is None:
+    if not model_loaded:
         raise HTTPException(
             status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
             detail="Model is not loaded."
@@ -166,7 +197,17 @@ async def predict(file: UploadFile = File(...)) -> JSONResponse:
     img_array = np.expand_dims(img_array, axis=0)
 
     try:
-        predictions = model.predict(img_array, verbose=0)
+        if use_tflite and interpreter is not None:
+            input_details = interpreter.get_input_details()
+            output_details = interpreter.get_output_details()
+            interpreter.set_tensor(input_details[0]['index'], img_array)
+            interpreter.invoke()
+            predictions = interpreter.get_tensor(output_details[0]['index'])
+        elif keras_model is not None:
+            predictions = keras_model.predict(img_array, verbose=0)
+        else:
+            raise RuntimeError("No loaded model instance available for inference.")
+
         scores = predictions[0]
 
         top_index = int(np.argmax(scores))
