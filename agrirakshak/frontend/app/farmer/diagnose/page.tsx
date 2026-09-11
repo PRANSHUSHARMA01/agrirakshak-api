@@ -25,7 +25,25 @@ function PageHeader({
       </div>
       {action}
     </div>
-  );
+}
+
+function formatDiseaseName(rawName?: string): string {
+  if (!rawName) return "Crop Disease Diagnosis";
+  let cleaned = rawName.replace(/^\d+[_]/, "");
+  cleaned = cleaned.replace(/___/g, " - ").replace(/__/g, " ").replace(/_/g, " ");
+  return cleaned;
+}
+
+function getCropFromClass(rawName?: string): string {
+  if (!rawName) return "Rice";
+  const lower = rawName.toLowerCase();
+  if (lower.includes("maize") || lower.includes("maydis") || lower.includes("turcicum") || lower.includes("curvularia") || lower.includes("armyworm") || lower.includes("sorghum")) {
+    return "Maize";
+  }
+  if (lower.includes("potato")) return "Potato";
+  if (lower.includes("tomato")) return "Tomato";
+  if (lower.includes("pepper")) return "Pepper";
+  return "Rice";
 }
 
 export default function DirectDiagnosePage() {
@@ -204,8 +222,8 @@ export default function DirectDiagnosePage() {
               </div>
               <img src={base64Image && base64Image.length > 100 ? base64Image : "/agrirakshak-rice-detail.jpg"} alt="Uploaded crop leaf" />
               <div className="result-meta">
-                <span>Target Crop: Rice</span>
-                <h2>{prediction.predicted_class?.replace(/_/g, " ")}</h2>
+                <span>Target Crop: {getCropFromClass(prediction.predicted_class)}</span>
+                <h2>{formatDiseaseName(prediction.predicted_class)}</h2>
                 <div className="confidence">
                   <strong>{Math.round(prediction.confidence * 100)}%</strong>
                   <span>confidence</span>

@@ -183,16 +183,139 @@ class PredictionClient:
             print(f"[PredictionClient] In-process inference error: {e}")
             return None
 
+    def predict_with_gemini_vision(self, image_bytes: bytes) -> Optional[Dict[str, Any]]:
+        """
+        Runs cloud image inference using Gemini 2.0 Flash Vision API when external microservice and local models are unavailable.
+        """
+        api_key = os.getenv("GEMINI_API_KEY", "")
+        if not api_key:
+            try:
+                from app.config import settings
+                api_key = getattr(settings, "GEMINI_API_KEY", "")
+            except Exception:
+                pass
+
+        if not api_key:
+            print("[PredictionClient] Gemini API key not found for cloud vision fallback.")
+            return None
+
+        try:
+            import base64
+            b64_img = base64.b64encode(image_bytes).decode("utf-8")
+
+            prompt = (
+                "You are an expert plant pathologist and AI crop disease diagnosis engine for AgriRakshak. "
+                "Examine the provided image of the crop leaf carefully. "
+                "Identify the crop type, disease/pest name (or if it is healthy), and give a confidence score. "
+                "Format your output strictly as a JSON object with the following fields: "
+                '{"is_crop_photo": true, "crop": "Rice", '
+                '"predicted_class": "01_Bacterial_leaf_blight", '
+                '"confidence": 0.94, "description": "Brief description of observed leaf symptoms"}'
+                "\nStandard predicted_class names to match when possible: "
+                "01_Bacterial_leaf_blight, 02_Brown_spot, 03_False_smut, 04_leaf_sheath_blight, "
+                "05_Leaf_folder, 06_Rice_skipper, 07_White_stem_borer, 08_Yellow_stem_borer, Rice_Healthy, "
+                "01_maydis_leaf_blight, 02_turcicum_leaf_blight, 02_fall_armyworm, Maize_Healthy, "
+                "Potato___Early_blight, Potato___Late_blight, Potato___healthy, "
+                "Tomato_Bacterial_spot, Tomato_Early_blight, Tomato_Late_blight, Tomato__Tomato_YellowLeaf__Curl_Virus, Tomato_healthy."
+            )
+
+            models_to_try = [
+                "gemini-2.0-flash",
+                "gemini-1.5-flash-latest",
+                "gemini-flash-latest"
+            ]
+
+            for model_name in models_to_try:
+                auth_configs = [
+                    {"url": f"https://generativelanguage.googleapis.com/v1beta/models/{model_name}:generateContent?key={api_key}", "headers": {"Content-Type": "application/json"}},
+                    {"url": f"https://generativelanguage.googleapis.com/v1beta/models/{model_name}:generateContent", "headers": {"Content-Type": "application/json", "x-goog-api-key": api_key}},
+                    {"url": f"https://generativelanguage.googleapis.com/v1beta/models/{model_name}:generateContent", "headers": {"Content-Type": "application/json", "Authorization": f"Bearer {api_key}"}}
+                ]
+                
+                for auth_cfg in auth_configs:
+                    try:
+                        url = auth_cfg["url"]
+                        headers = auth_cfg["headers"]
+                        payload = {
+                            "contents": [
+                                {
+                                    "parts": [
+                                        {"text": prompt},
+                                        {
+                                            "inline_data": {
+                                                "mime_type": "image/jpeg",
+                                                "data": b64_img
+                                            }
+                                        }
+                                    ]
+                                }
+                            ],
+                            "generationConfig": {
+                                "response_mime_type": "application/json",
+                                "temperature": 0.2
+                            }
+                        }
+
+                        resp = requests.post(url, headers=headers, json=payload, timeout=6.0)
+                        if resp.status_code == 200:
+                            res_data = resp.json()
+                            candidates = res_data.get("candidates", [])
+                            if candidates:
+                                parts = candidates[0].get("content", {}).get("parts", [])
+                                if parts:
+                                    json_str = parts[0].get("text", "").strip()
+                                    parsed = json.loads(json_str)
+
+                                    is_crop = parsed.get("is_crop_photo", True)
+                                    if not is_crop:
+                                        return {
+                                            "success": False,
+                                            "is_crop_photo": False,
+                                            "predicted_class": "Invalid Non-Crop Photo",
+                                            "confidence": 0.0,
+                                            "needs_expert_review": False,
+                                            "fallback_message": "Kindly upload a clear photo of a crop or plant leaf.",
+                                            "raw_response": parsed
+                                        }
+
+                                    raw_class = parsed.get("predicted_class", "01_Bacterial_leaf_blight")
+                                    confidence = float(parsed.get("confidence", 0.92))
+                                    conf_normalized = round(confidence, 4) if confidence <= 1.0 else round(confidence / 100.0, 4)
+                                    needs_expert = conf_normalized < self.threshold
+
+                                    print(f"[PredictionClient] Gemini Vision Fallback SUCCESS: {raw_class} ({conf_normalized*100}%)")
+
+                                    return {
+                                        "success": True,
+                                        "predicted_class": raw_class,
+                                        "confidence": conf_normalized,
+                                        "needs_expert_review": needs_expert,
+                                        "raw_response": {
+                                            "success": True,
+                                            "predicted_class": raw_class,
+                                            "confidence": conf_normalized,
+                                            "source": "gemini_vision",
+                                            "details": parsed
+                                        }
+                                    }
+                    except Exception as model_err:
+                        print(f"[PredictionClient] Gemini model ({model_name}) auth error: {model_err}")
+
+        except Exception as e:
+            print(f"[PredictionClient] Gemini Vision API error: {e}")
+
+        return None
+
     def predict_image(self, image_bytes: bytes, filename: str = "leaf.jpg") -> Dict[str, Any]:
         """
-        Sends image to POST /predict microservice, and falls back to in-process TFLite/Keras inference seamlessly.
+        Sends image to POST /predict microservice, and falls back to in-process TFLite/Keras model or Gemini 2.0 Flash Vision seamlessly.
         """
         endpoint = f"{self.base_url}/predict"
         files = {"file": (filename, image_bytes, "image/jpeg")}
 
-        # 1. Try external HTTP microservice with 35.0s timeout (accommodates Render free tier cold starts)
+        # 1. Try external HTTP microservice with 5.0s timeout (quick failover if asleep)
         try:
-            resp = requests.post(endpoint, files=files, timeout=35.0)
+            resp = requests.post(endpoint, files=files, timeout=5.0)
             if resp.status_code == 200:
                 raw_data = resp.json()
                 if raw_data.get("success", False):
@@ -220,14 +343,20 @@ class PredictionClient:
                         "raw_response": raw_data
                     }
         except Exception as e:
-            print(f"[PredictionClient] Microservice endpoint ({endpoint}) unavailable ({e}). Running in-process inference...")
+            print(f"[PredictionClient] Microservice endpoint ({endpoint}) unavailable/timing out ({e}). Trying in-process model...")
 
         # 2. Fallback to in-process TFLite / Keras model
         in_proc_res = self.predict_in_process(image_bytes)
         if in_proc_res:
             return in_proc_res
 
-        # 3. Final safety fallback
+        # 3. Fallback to Gemini 2.0 Flash Vision Cloud API
+        print("[PredictionClient] In-process model unavailable. Invoking Gemini 2.0 Flash Vision fallback...")
+        gemini_res = self.predict_with_gemini_vision(image_bytes)
+        if gemini_res:
+            return gemini_res
+
+        # 4. Final safety fallback
         return {
             "success": False,
             "predicted_class": "Unknown",
