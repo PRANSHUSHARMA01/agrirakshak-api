@@ -61,8 +61,17 @@ export default function FarmerHomePage() {
   const [weatherRisk, setWeatherRisk] = useState<WeatherRisk | null>(null);
   const [cases, setCases] = useState<FarmerCase[]>([]);
   const [escalations, setEscalations] = useState<EscalationCase[]>([]);
+  const [todayFormatted, setTodayFormatted] = useState<string>("");
 
   useEffect(() => {
+    const options: Intl.DateTimeFormatOptions = {
+      weekday: "long",
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    };
+    setTodayFormatted(new Date().toLocaleDateString("en-GB", options));
+
     getWeatherRisk().then(setWeatherRisk).catch(console.error);
     getCases().then(setCases).catch(console.error);
     getEscalations("pending").then(setEscalations).catch(console.error);
@@ -75,7 +84,7 @@ export default function FarmerHomePage() {
     <FarmerLayout>
       <div className="content-wrap">
         <PageHeader
-          eyebrow="Tuesday, 24 August 2026"
+          eyebrow={todayFormatted || "Today's Overview"}
           title={
             <>
               Namaste, Ravi <span className="wave">✦</span>
@@ -181,7 +190,7 @@ export default function FarmerHomePage() {
             <div className="report-row">
               <img src="/agrirakshak-rice-detail.jpg" alt="Rice leaf report" />
               <div>
-                <p>Scanned {latestCase ? new Date(latestCase.created_at).toLocaleDateString() : "22 Aug 2026"}</p>
+                <p>Scanned {latestCase ? new Date(latestCase.created_at).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" }) : (todayFormatted ? todayFormatted.split(", ")[1] || todayFormatted : "Today")}</p>
                 <strong>{latestCase ? `${Math.round(latestCase.confidence * 100)}% confidence` : "94% confidence"}</strong>
                 <span>Inspect nearby plants and maintain field drainage.</span>
               </div>
