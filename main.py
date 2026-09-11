@@ -247,3 +247,10 @@ async def predict(file: UploadFile = File(...)) -> JSONResponse:
                 "error": f"Prediction failed: {str(e)}"
             }
         )
+    finally:
+        try:
+            import gc
+            del img_array, image_resized, image, contents
+            gc.collect()
+        except Exception:
+            pass
