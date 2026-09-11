@@ -10,13 +10,15 @@ import numpy as np
 PREDICTION_API_URL = os.getenv("PREDICTION_API_URL", "https://agrirakshak-model.onrender.com").rstrip("/")
 PREDICTION_CONFIDENCE_THRESHOLD = float(os.getenv("PREDICTION_CONFIDENCE_THRESHOLD", "0.60"))
 
-# In-process Keras model fallback initialization
+# In-process model fallback initialization
 _in_process_model = None
+_in_process_interpreter = None
+_in_process_use_tflite = False
 _in_process_class_names = []
 _in_process_loaded = False
 
 def _init_in_process_model():
-    global _in_process_model, _in_process_class_names, _in_process_loaded
+    global _in_process_model, _in_process_interpreter, _in_process_use_tflite, _in_process_class_names, _in_process_loaded
     if _in_process_loaded:
         return True
 
@@ -29,27 +31,64 @@ def _init_in_process_model():
             Path.cwd(),
         ]
         
-        model_path = None
+        tflite_path = None
+        keras_path = None
         class_path = None
 
         for d in search_dirs:
-            mp = d / "best_agri_finetuned.keras"
+            tp = d / "best_agri_finetuned.tflite"
+            kp = d / "best_agri_finetuned.keras"
             cp = d / "class_names.json"
-            if mp.exists():
-                model_path = mp
+            if tp.exists() and not tflite_path:
+                tflite_path = tp
+            if kp.exists() and not keras_path:
+                keras_path = kp
+            if cp.exists() and not class_path:
                 class_path = cp
-                break
 
-        if model_path and model_path.exists():
-            import keras
-            print(f"[PredictionClient] Loading in-process Keras model from '{model_path}'...")
-            _in_process_model = keras.models.load_model(str(model_path))
-            if class_path and class_path.exists():
+        if class_path and class_path.exists():
+            try:
                 with open(class_path, "r", encoding="utf-8") as f:
                     _in_process_class_names = json.load(f)
-            _in_process_loaded = True
-            print("[PredictionClient] In-process Keras model loaded successfully!")
-            return True
+            except Exception as e:
+                print(f"[PredictionClient] Error loading class names: {e}")
+
+        # 1. Try loading lightweight TFLite model first
+        if tflite_path and tflite_path.exists():
+            interpreter_cls = None
+            for mod_name in ["ai_edge_litert.interpreter", "tflite_runtime.interpreter", "tensorflow.lite"]:
+                try:
+                    mod = __import__(mod_name, fromlist=["Interpreter"])
+                    interpreter_cls = getattr(mod, "Interpreter")
+                    break
+                except Exception:
+                    pass
+
+            if interpreter_cls:
+                try:
+                    print(f"[PredictionClient] Loading in-process TFLite model from '{tflite_path}'...")
+                    _in_process_interpreter = interpreter_cls(model_path=str(tflite_path))
+                    _in_process_interpreter.allocate_tensors()
+                    _in_process_use_tflite = True
+                    _in_process_loaded = True
+                    print("[PredictionClient] In-process TFLite model loaded successfully!")
+                    return True
+                except Exception as e:
+                    print(f"[PredictionClient] TFLite load error: {e}")
+
+        # 2. Fallback to Keras model if TFLite unavailable
+        if keras_path and keras_path.exists():
+            try:
+                import keras
+                print(f"[PredictionClient] Loading in-process Keras model from '{keras_path}'...")
+                _in_process_model = keras.models.load_model(str(keras_path))
+                _in_process_use_tflite = False
+                _in_process_loaded = True
+                print("[PredictionClient] In-process Keras model loaded successfully!")
+                return True
+            except Exception as e:
+                print(f"[PredictionClient] In-process Keras model load error: {e}")
+
     except Exception as e:
         print(f"[PredictionClient] In-process model load warning: {e}")
     
@@ -57,7 +96,7 @@ def _init_in_process_model():
 
 class PredictionClient:
     """
-    HTTP client wrapper for AgriRakshak prediction service with automatic in-process Keras model fallback.
+    HTTP client wrapper for AgriRakshak prediction service with automatic in-process TFLite/Keras model fallback.
     """
 
     def __init__(self, base_url: Optional[str] = None, threshold: Optional[float] = None):
@@ -69,7 +108,7 @@ class PredictionClient:
         Check health status of prediction service (HTTP endpoint or in-process model).
         """
         try:
-            resp = requests.get(f"{self.base_url}/health", timeout=2.0)
+            resp = requests.get(f"{self.base_url}/health", timeout=5.0)
             if resp.status_code == 200:
                 return resp.json()
         except Exception:
@@ -84,10 +123,10 @@ class PredictionClient:
 
     def predict_in_process(self, image_bytes: bytes) -> Optional[Dict[str, Any]]:
         """
-        Runs image inference in-process using best_agri_finetuned.keras if available.
+        Runs image inference in-process using TFLite or Keras model if available.
         """
         try:
-            if not _init_in_process_model() or _in_process_model is None:
+            if not _init_in_process_model():
                 return None
 
             image_raw = Image.open(io.BytesIO(image_bytes)).convert("RGB")
@@ -95,7 +134,17 @@ class PredictionClient:
             img_array = np.array(image, dtype=np.float32)
             img_array = np.expand_dims(img_array, axis=0)
 
-            predictions = _in_process_model.predict(img_array, verbose=0)
+            if _in_process_use_tflite and _in_process_interpreter is not None:
+                input_details = _in_process_interpreter.get_input_details()
+                output_details = _in_process_interpreter.get_output_details()
+                _in_process_interpreter.set_tensor(input_details[0]['index'], img_array)
+                _in_process_interpreter.invoke()
+                predictions = _in_process_interpreter.get_tensor(output_details[0]['index'])
+            elif _in_process_model is not None:
+                predictions = _in_process_model.predict(img_array, verbose=0)
+            else:
+                return None
+
             scores = predictions[0]
 
             top_index = int(np.argmax(scores))
@@ -136,14 +185,14 @@ class PredictionClient:
 
     def predict_image(self, image_bytes: bytes, filename: str = "leaf.jpg") -> Dict[str, Any]:
         """
-        Sends image to POST /predict microservice, and falls back to in-process Keras inference seamlessly.
+        Sends image to POST /predict microservice, and falls back to in-process TFLite/Keras inference seamlessly.
         """
         endpoint = f"{self.base_url}/predict"
         files = {"file": (filename, image_bytes, "image/jpeg")}
 
-        # 1. Try external HTTP microservice
+        # 1. Try external HTTP microservice with 35.0s timeout (accommodates Render free tier cold starts)
         try:
-            resp = requests.post(endpoint, files=files, timeout=4.0)
+            resp = requests.post(endpoint, files=files, timeout=35.0)
             if resp.status_code == 200:
                 raw_data = resp.json()
                 if raw_data.get("success", False):
@@ -173,7 +222,7 @@ class PredictionClient:
         except Exception as e:
             print(f"[PredictionClient] Microservice endpoint ({endpoint}) unavailable ({e}). Running in-process inference...")
 
-        # 2. Fallback to in-process Keras model
+        # 2. Fallback to in-process TFLite / Keras model
         in_proc_res = self.predict_in_process(image_bytes)
         if in_proc_res:
             return in_proc_res

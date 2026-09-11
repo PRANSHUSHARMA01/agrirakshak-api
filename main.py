@@ -11,9 +11,6 @@ from fastapi.responses import JSONResponse
 from PIL import Image
 import numpy as np
 
-# Use keras directly for Keras 3 model compatibility
-import keras
-
 # ============================================================
 # PATHS AND CONFIGURATION
 # ============================================================
@@ -84,22 +81,26 @@ def load_resources():
 
     # 1. Try loading TFLite model first (Lightweight, low RAM footprint ~30MB)
     if TFLITE_PATH.exists():
-        try:
-            print(f"Loading AgriRakshak TFLite model from '{TFLITE_PATH}'...")
+        interpreter_cls = None
+        for mod_name in ["ai_edge_litert.interpreter", "tflite_runtime.interpreter", "tensorflow.lite"]:
             try:
-                import tflite_runtime.interpreter as tflite
-                interpreter = tflite.Interpreter(model_path=str(TFLITE_PATH))
-            except ImportError:
-                import tensorflow as tf
-                interpreter = tf.lite.Interpreter(model_path=str(TFLITE_PATH))
-            
-            interpreter.allocate_tensors()
-            use_tflite = True
-            model_loaded = True
-            print("TFLITE MODEL LOADED SUCCESSFULLY (Low-Memory Mode)")
-        except Exception as e:
-            print(f"Error loading TFLite model: {e}")
-            use_tflite = False
+                mod = __import__(mod_name, fromlist=["Interpreter"])
+                interpreter_cls = getattr(mod, "Interpreter")
+                break
+            except Exception:
+                pass
+
+        if interpreter_cls:
+            try:
+                print(f"Loading AgriRakshak TFLite model from '{TFLITE_PATH}'...")
+                interpreter = interpreter_cls(model_path=str(TFLITE_PATH))
+                interpreter.allocate_tensors()
+                use_tflite = True
+                model_loaded = True
+                print("TFLITE MODEL LOADED SUCCESSFULLY (Low-Memory Mode)")
+            except Exception as e:
+                print(f"Error loading TFLite model: {e}")
+                use_tflite = False
 
     # 2. Fallback to Keras model if TFLite failed or not present
     if not model_loaded and MODEL_PATH.exists():

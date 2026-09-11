@@ -18,5 +18,7 @@ psycopg2-binary>=2.9.9
 geoalchemy2>=0.14.0
 pillow>=10.0.0
 numpy>=1.26.0
+tflite-runtime>=2.14.0
 tensorflow-cpu>=2.15.0
 keras>=3.0.0
+

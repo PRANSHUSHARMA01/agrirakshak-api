@@ -4,7 +4,7 @@ from pathlib import Path
 from PIL import Image, ImageDraw
 
 # Add backend directory to sys.path
-sys.path.insert(0, str(Path(__file__).resolve().parent / "agrirakshak-mvp" / "backend"))
+sys.path.insert(0, str(Path(__file__).resolve().parent / "agrirakshak" / "backend"))
 
 from app.services.prediction_client import PredictionClient
 
